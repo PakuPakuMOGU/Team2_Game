@@ -14,7 +14,8 @@ public class positionDate : MonoBehaviour
     {
         v3NowPosition = this.transform.position;
     }
-
+    
+    // ç¿ïWÇïœçXÇ∑ÇÈ.
     public void BasePositionChange(float x, float y, float z)
     {
         v3NowPosition = v3BasePosition = new Vector3(x, y, z);
@@ -30,14 +31,16 @@ public class positionDate : MonoBehaviour
         return v3NowPosition;
     }
 
-    public float NowPositionX()
+    // åªç›ÇÃç¿ïWÇï‘Ç∑.
+    public float NowPositionOne(char xyz)
     {
-        return v3NowPosition.x;
-    }
-
-    public float NowPositionY()
-    {
-        return v3NowPosition.y;
+        switch (xyz)
+        {
+            case 'x': return v3NowPosition.x;
+            case 'y': return v3NowPosition.y;
+            case 'z': return v3NowPosition.z;
+        }
+        return - 1.0f;
     }
 
     public void NowPositionYChange(float y)

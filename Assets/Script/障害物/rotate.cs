@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class rotate : MonoBehaviour
 {
-    [Header("ランダムに速度を設定する")]
-    [SerializeField]
-    private bool rand = false;
-
-    [Header("ランダム速度下限")]
-    [SerializeField]
-    private int rand_min = 1;
-
-    [Header("ランダム速度上限")]
-    [SerializeField]
-    private int rand_max = 3;
+    [System.Serializable]
+    public class RandomSpeed
+    {
+        public bool randspeed = false;
+        public int min = 1;
+        public int max = 3;
+    }
+    [Header("ランダム速度設定")]
+    [SerializeField] private RandomSpeed randomSpeedSettings;
 
     [Header("Y軸方向へ移動する")]
     [SerializeField]
@@ -22,7 +20,7 @@ public class rotate : MonoBehaviour
 
     [Header("重力スクリプト")]
     [SerializeField]
-    public down updown;
+    public UpDown updown;
 
     [Header("座標設定スクリプト")]
     [SerializeField]
@@ -56,14 +54,14 @@ public class rotate : MonoBehaviour
     void FixedUpdate()
     {
         if (running) updown.GivePositionY();                     // 上下に動く場合Yを反映させる.
-        if (rand)
+        if (randomSpeedSettings.randspeed)
         {
-            speed = Random.Range(rand_min, rand_max);             // ランダム速度を使う場合ランダム計算.
+            speed = Random.Range(randomSpeedSettings.min, randomSpeedSettings.max);             // ランダム速度を使う場合ランダム計算.
             speed += (float)((Random.Range(0, 8) / 10) + 0.1);
         }
 
         fAngle_Vel += speed * Mathf.PI / 50.0f;
-        v3Position = new Vector3(fRot_r * Mathf.Cos(fAngle_Vel), position.NowPositionY(), fRot_r * Mathf.Sin(fAngle_Vel)); // 位置の計算.
+        v3Position = new Vector3(fRot_r * Mathf.Cos(fAngle_Vel), position.NowPositionOne('y'), fRot_r * Mathf.Sin(fAngle_Vel)); // 位置の計算.
 
         transform.position = v3Position;
     }
