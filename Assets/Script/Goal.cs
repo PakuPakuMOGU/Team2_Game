@@ -16,8 +16,9 @@ public class Goal : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.tag == "player")
+        if (collider.gameObject.tag == "Player")
         {
+            Debug.Log("Clear!!!");
             // ‚±‚±‚ÅƒS[ƒ‹—p‚ÌŠÖ”‚ğŒÄ‚Ño‚·.
         }
     }
