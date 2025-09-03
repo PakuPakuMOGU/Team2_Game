@@ -301,7 +301,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1227055453
+--- !u!1 &2047109787
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -319,7 +319,8 @@ GameObject:
   - component: {fileID: 1227055455}
   - component: {fileID: 1227055454}
   m_Layer: 0
-  m_Name: GameEnd
+--- !u!114 &2047109788
+m_Name: GoalCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -342,7 +343,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1227055453}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5bd7fa2c1993044f80f0c5b7b413b53, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c0a740f5c5a9ab4d971d013ee67c39b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   boxPosition: {x: 0, y: 0, z: 0}
