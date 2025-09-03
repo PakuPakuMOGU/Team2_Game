@@ -2,20 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class down : MonoBehaviour
+public class UpDown : MonoBehaviour
 {
     private Vector3 v3BasePosition;
     private Vector3 v3BaseVelocity = new Vector3(0.0f, 0.0f, 0.0f);
     private Vector3 v3Position;
     private Vector3 v3Velocity;
 
-    [Header("ランダム座標を使う")]
-    [SerializeField]
-    private bool rand = false;
+    [System.Serializable]
+    public class RandomSettings
+    {
+        public bool useRandom = false;
+        public RandomPosition script;
+    }
 
-    [Header("ランダム座標スクリプト")]
-    [SerializeField]
-    private RandomPosition rand_s;
+    [Header("ランダム座標設定")]
+    [SerializeField] private RandomSettings randomSettings;
 
     [Header("回転する")]
     [SerializeField]
@@ -40,7 +42,7 @@ public class down : MonoBehaviour
 
     void Start()
     {
-        if (rand)   rand_s.RanPosition();
+        if (randomSettings.useRandom) randomSettings.script.RanPosition();
         v3BasePosition = position.BasePosition();
         v3Position = v3BasePosition;                    // 位置を初期化.
         v3Velocity = v3BaseVelocity;                    // 速度を初期化.
@@ -52,16 +54,9 @@ public class down : MonoBehaviour
         v3Position += v3Velocity;       // 位置に速度を足す.
         v3Velocity.y += fGravity;       // 速度に加速度を足す.
 
-        if (fGravity > 0.0f)
-        {
-            if (v3Position.y > finishposition)
-                Destroy(gameObject);        // y軸が規定値を越したらオブジェクト消去.
-        }
-        else
-        {
-            if (v3Position.y < finishposition)
-                Destroy(gameObject);        // y軸が規定値を下回ったらオブジェクト消去.
-        }
+        if ((fGravity > 0.0f && v3Position.y > finishposition) ||
+            (fGravity <= 0.0f && v3Position.y < finishposition))
+                Destroy(gameObject);     // y軸が規定値を上/下回ったらオブジェクト消去.
 
         if (!rotate)
         {
