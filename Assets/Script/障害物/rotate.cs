@@ -7,20 +7,21 @@ public class rotate : MonoBehaviour
     [System.Serializable]
     public class RandomSpeed
     {
-        public bool randspeed = false;
+        public bool yes = false;
         public int min = 1;
         public int max = 3;
     }
-    [Header("ランダム速度設定")]
-    [SerializeField] private RandomSpeed randomSpeedSettings;
+    [Header("ランダム速度設定する？")]
+    [SerializeField] private RandomSpeed randomSpeedSet;
 
-    [Header("Y軸方向へ移動する")]
-    [SerializeField]
-    private bool running = false;
-
-    [Header("重力スクリプト")]
-    [SerializeField]
-    public UpDown updown;
+    [System.Serializable]
+    public class UpOrDown
+    {
+        public bool yes = false;
+        public UpDown script;
+    }
+    [Header("ランダム速度設定する？")]
+    [SerializeField] private UpOrDown updownSet;
 
     [Header("座標設定スクリプト")]
     [SerializeField]
@@ -53,10 +54,10 @@ public class rotate : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (running) updown.GivePositionY();                     // 上下に動く場合Yを反映させる.
-        if (randomSpeedSettings.randspeed)
+        if (updownSet.yes) updownSet.script.GivePositionY();                     // 上下に動く場合Yを反映させる.
+        if (randomSpeedSet.yes)
         {
-            speed = Random.Range(randomSpeedSettings.min, randomSpeedSettings.max);             // ランダム速度を使う場合ランダム計算.
+            speed = Random.Range(randomSpeedSet.min, randomSpeedSet.max);             // ランダム速度を使う場合ランダム計算.
             speed += (float)((Random.Range(0, 8) / 10) + 0.1);
         }
 

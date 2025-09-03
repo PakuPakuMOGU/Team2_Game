@@ -9,7 +9,7 @@ public class ColorChange : MonoBehaviour
     private int ColorDown = 1;
 
     MeshRenderer mesh;
-    int countdayo;
+    private int countdayo;
 
     void Start()
     {

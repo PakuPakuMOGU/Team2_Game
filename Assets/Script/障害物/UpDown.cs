@@ -12,14 +12,14 @@ public class UpDown : MonoBehaviour
     [System.Serializable]
     public class RandomSettings
     {
-        public bool useRandom = false;
+        public bool yes = false;
         public RandomPosition script;
     }
 
-    [Header("ランダム座標設定")]
+    [Header("ランダム座標設定する？")]
     [SerializeField] private RandomSettings randomSettings;
 
-    [Header("回転する")]
+    [Header("回転する？")]
     [SerializeField]
     private bool rotate = false;
 
@@ -42,7 +42,7 @@ public class UpDown : MonoBehaviour
 
     void Start()
     {
-        if (randomSettings.useRandom) randomSettings.script.RanPosition();
+        if (randomSettings.yes) randomSettings.script.RanPosition();
         v3BasePosition = position.BasePosition();
         v3Position = v3BasePosition;                    // 位置を初期化.
         v3Velocity = v3BaseVelocity;                    // 速度を初期化.
@@ -66,6 +66,6 @@ public class UpDown : MonoBehaviour
 
     public void GivePositionY()
     {
-        position.NowPositionYChange(v3Position.y);
+        position.NowPositionChange('y', v3Position.y);
     }
 }
