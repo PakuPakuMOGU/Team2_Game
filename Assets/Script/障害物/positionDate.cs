@@ -14,7 +14,8 @@ public class positionDate : MonoBehaviour
     {
         v3NowPosition = this.transform.position;
     }
-
+    
+    // 座標を変更する.
     public void BasePositionChange(float x, float y, float z)
     {
         v3NowPosition = v3BasePosition = new Vector3(x, y, z);
@@ -30,23 +31,26 @@ public class positionDate : MonoBehaviour
         return v3NowPosition;
     }
 
-    public float NowPositionX()
+    // 現在の座標を返す.
+    public float NowPositionOne(char xyz)
     {
-        return v3NowPosition.x;
+        switch (xyz)
+        {
+            case 'x': return v3NowPosition.x;
+            case 'y': return v3NowPosition.y;
+            case 'z': return v3NowPosition.z;
+        }
+        return - 1.0f;
     }
 
-    public float NowPositionY()
+    // 現在の座標を返す.
+    public void NowPositionChange(char xyz, float num)
     {
-        return v3NowPosition.y;
-    }
-
-    public void NowPositionYChange(float y)
-    {
-        v3NowPosition.y = y;
-    }
-
-    public float NowPositionZ()
-    {
-        return v3NowPosition.z;
+        switch (xyz)
+        {
+            case 'x': v3NowPosition.x = num;  break;
+            case 'y': v3NowPosition.y = num;  break;
+            case 'z': v3NowPosition.z = num;  break;
+        }
     }
 }

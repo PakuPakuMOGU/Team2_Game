@@ -767,7 +767,10 @@ PlayerSettings:
   hmiCpuConfiguration: 
   apiCompatibilityLevel: 6
   activeInputHandler: 2
+<<<<<<< HEAD
   windowsGamepadBackendHint: 0
+=======
+>>>>>>> 1519f0f4012a48036adea5b46dfda57af160e8d0
   cloudProjectId: 
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []

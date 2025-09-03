@@ -1,33 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameEnd : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-       
-    }
+    private bool isPaused = false;
 
-    // Update is called once per frame
     void Update()
     {
-        EndGame();
-    }
-
-    private void EndGame()
-    {
-        //Escが押された時
-        if (Input.GetKey(KeyCode.Escape))
+        // Shiftキーを押した瞬間にポーズ切り替え
+        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
         {
-
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
+            isPaused = !isPaused; 
+            Debug.Log("Pause状態: " + isPaused);
         }
 
+        // ポーズ中にEscを押したら終了
+        if (isPaused && Input.GetKeyDown(KeyCode.Escape))
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false; // unity終わり
+#else
+            Application.Quit(); // ビルド終わり
+#endif
+        }
     }
 }
