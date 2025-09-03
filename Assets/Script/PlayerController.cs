@@ -1,5 +1,4 @@
 using UnityEngine;
-<<<<<<< HEAD
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -50,8 +49,9 @@ public class SimplePlayerController : MonoBehaviour
             jumpInput = false;
         }
     }
-=======
+}
 
+    /*
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
@@ -102,5 +102,5 @@ public class PlayerController : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, transform.position + Vector3.down * 1.1f);
     }
->>>>>>> 1519f0f4012a48036adea5b46dfda57af160e8d0
 }
+    */
