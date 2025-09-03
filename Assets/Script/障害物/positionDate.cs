@@ -43,13 +43,14 @@ public class positionDate : MonoBehaviour
         return - 1.0f;
     }
 
-    public void NowPositionYChange(float y)
+    // åªç›ÇÃç¿ïWÇï‘Ç∑.
+    public void NowPositionChange(char xyz, float num)
     {
-        v3NowPosition.y = y;
-    }
-
-    public float NowPositionZ()
-    {
-        return v3NowPosition.z;
+        switch (xyz)
+        {
+            case 'x': v3NowPosition.x = num;  break;
+            case 'y': v3NowPosition.y = num;  break;
+            case 'z': v3NowPosition.z = num;  break;
+        }
     }
 }
