@@ -1,5 +1,9 @@
 {
   "dependencies": {
+<<<<<<< HEAD
+    "com.unity.cinemachine": "2.8.9",
+=======
+>>>>>>> parent of d6fac73 (Playerです！（3人称用))
     "com.unity.collab-proxy": "1.15.16",
     "com.unity.feature.development": "1.0.1",
     "com.unity.ide.rider": "3.0.13",
