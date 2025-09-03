@@ -1,26 +1,52 @@
 using UnityEngine;
+using UnityEngine.UI; // Image, Text を使うため
 
-public class GameEnd : MonoBehaviour
+public class Pose : MonoBehaviour
 {
+    public Image PoseBack;    // 背景画像
+    public Text Posetxt;      // テキスト
+
     private bool isPaused = false;
+
+    void Start()
+    {
+        // デフォルトで透明にする
+        SetAlpha(PoseBack, 0f);
+        SetAlpha(Posetxt, 0f);
+    }
 
     void Update()
     {
-        // Shiftキーを押した瞬間にポーズ切り替え
+        // Shiftキーでポーズ切り替え
         if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
         {
-            isPaused = !isPaused; 
-            Debug.Log("Pause状態: " + isPaused);
-        }
+            isPaused = !isPaused;
 
-        // ポーズ中にEscを押したら終了
-        if (isPaused && Input.GetKeyDown(KeyCode.Escape))
+            if (isPaused)
+            {
+                // 表示
+                SetAlpha(PoseBack, 1f);
+                SetAlpha(Posetxt, 1f);
+                Time.timeScale = 0f; // ゲーム停止
+            }
+            else
+            {
+                // 非表示
+                SetAlpha(PoseBack, 0f);
+                SetAlpha(Posetxt, 0f);
+                Time.timeScale = 1f; // ゲーム再開
+            }
+        }
+    }
+
+    // 透明度を即時に変更する関数
+    private void SetAlpha(Graphic g, float alpha)
+    {
+        if (g != null)
         {
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false; // unity終わり
-#else
-            Application.Quit(); // ビルド終わり
-#endif
+            Color c = g.color;
+            c.a = alpha;
+            g.color = c;
         }
     }
 }
