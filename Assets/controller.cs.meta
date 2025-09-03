@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/PlayerController.cs.meta
-guid: dbd8c4bfb5b1eb74a92d66bf2d02a0be
-========
 guid: beb5103074b9bdc41a9e6fca4b77e37c
->>>>>>>> parent of d6fac73 (Playerです！（3人称用)):Assets/controller.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
