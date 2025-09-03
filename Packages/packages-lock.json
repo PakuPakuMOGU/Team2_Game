@@ -1,5 +1,12 @@
 {
   "dependencies": {
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> master
+=======
+>>>>>>> 1519f0f4012a48036adea5b46dfda57af160e8d0
     "com.unity.burst": {
       "version": "1.6.5",
       "depth": 1,
@@ -10,7 +17,15 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.cinemachine": {
+<<<<<<< HEAD
+<<<<<<< HEAD
+      "version": "2.9.5",
+=======
       "version": "2.8.9",
+>>>>>>> master
+=======
+      "version": "2.8.9",
+>>>>>>> 1519f0f4012a48036adea5b46dfda57af160e8d0
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -18,6 +33,14 @@
       },
       "url": "https://packages.unity.com"
     },
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> parent of d6fac73 (Playerです！（3人称用))
+>>>>>>> master
+=======
+>>>>>>> 1519f0f4012a48036adea5b46dfda57af160e8d0
     "com.unity.collab-proxy": {
       "version": "1.15.16",
       "depth": 0,
