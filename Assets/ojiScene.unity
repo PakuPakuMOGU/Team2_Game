@@ -237,8 +237,8 @@ Transform:
   m_GameObject: {fileID: 114678487}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.84, z: -4.79}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalPosition: {x: 0.03, y: 3.84, z: -5.74}
+  m_LocalScale: {x: 5, y: 5, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -504,6 +504,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxPosition: {x: 0, y: 0, z: 0}
   r: 5
+  camera: {fileID: 1002283902}
   FadeCube: {fileID: 114678487}
 --- !u!65 &713993240
 BoxCollider:
@@ -676,7 +677,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1002283900}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.17305711, y: -0, z: -0, w: 0.98491186}
+  m_LocalRotation: {x: 0.17305516, y: 0, z: 0, w: 0.9849122}
   m_LocalPosition: {x: 0, y: 4.29, z: -6.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
