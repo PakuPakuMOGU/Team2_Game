@@ -12,8 +12,8 @@ public class Pause : MonoBehaviour
     void Start()
     {
         // 最初は非表示
-        SetAlpha(pauseBack, 0f);
-        SetAlpha(pauseTxt, 0f);
+        if (pauseBack != null) pauseBack.gameObject.SetActive(false);
+        if (pauseTxt != null) pauseTxt.gameObject.SetActive(false);
     }
 
     void Update()
@@ -22,20 +22,12 @@ public class Pause : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
         {
             isPaused = !isPaused;
-            Debug.Log("Pause状態: " + isPaused);
+            Time.timeScale = isPaused ? 0f : 1f;
 
-            if (isPaused)
-            {
-                Time.timeScale = 0f; // 停止
-                SetAlpha(pauseBack, 0.5f);
-                SetAlpha(pauseTxt, 1f);
-            }
-            else
-            {
-                Time.timeScale = 1f; // 再開
-                SetAlpha(pauseBack, 0f);
-                SetAlpha(pauseTxt, 0f);
-            }
+            if (pauseBack != null) pauseBack.gameObject.SetActive(isPaused);
+            if (pauseTxt != null) pauseTxt.gameObject.SetActive(isPaused);
+
+            Debug.Log("Pause状態: " + isPaused);
         }
 
         // ポーズ中に Esc で終了
@@ -46,17 +38,6 @@ public class Pause : MonoBehaviour
 #else
             Application.Quit();
 #endif
-        }
-    }
-
-    // 透明度を即座に変更
-    private void SetAlpha(Graphic g, float alpha)
-    {
-        if (g != null)
-        {
-            Color c = g.color;
-            c.a = alpha;
-            g.color = c;
         }
     }
 }
