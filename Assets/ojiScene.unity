@@ -461,6 +461,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &840434648
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 840434650}
+  - component: {fileID: 840434649}
+  m_Layer: 0
+  m_Name: ChackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &840434649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 840434648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d856fb4234f56864b9d96cec808c3715, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listPosition:
+  - {x: 0, y: 3, z: 0}
+  - {x: 3, y: 3, z: 3}
+  - {x: -3, y: 3, z: -3}
+  listSize:
+  - {x: 1, y: 8, z: 1}
+  - {x: 1, y: 8, z: 1}
+  - {x: 1, y: 8, z: 1}
+  listTag:
+  - Chack1
+  - Chack2
+  - Chack3
+  ChackPointPrefab: {fileID: 8403956139253292050, guid: 47b2945e3c9dd03458fa5c7f75afc207, type: 3}
+--- !u!4 &840434650
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 840434648}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.1843661, y: 1.7335202, z: -2.0396225}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1002283900
 GameObject:
   m_ObjectHideFlags: 0
@@ -951,7 +1008,7 @@ SceneRoots:
   - {fileID: 261988649}
   - {fileID: 1493431435}
   - {fileID: 713993243}
-  - {fileID: 1532782897}
   - {fileID: 114678492}
   - {fileID: 2003621534}
   - {fileID: 1002283903}
+  - {fileID: 840434650}
