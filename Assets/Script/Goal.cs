@@ -5,45 +5,65 @@ using UnityEngine.SceneManagement;
 
 public class Goal : MonoBehaviour
 {
-    [Header("ƒS[ƒ‹À•W”ÍˆÍ")]
+    [Header("ï¿½Sï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Wï¿½Íˆï¿½")]
     public Vector3 boxPosition = new Vector3(0, 0, 0);
     public float r = 5;
 
-    [Header("ƒƒCƒ“ƒJƒƒ‰")]
-    public Camera camera;
+    [System.Serializable]
+    public class FadeClass
+    {
+        public bool yes = true;
 
-    [Header("ƒtƒF[ƒhƒLƒ…[ƒu")]
-    public GameObject FadeCube;
-    private Fade fadescript;
+        [Header("ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½Jï¿½ï¿½ï¿½ï¿½")]
+        public Camera camera;
+
+        [Header("ï¿½tï¿½Fï¿½[ï¿½hï¿½Lï¿½ï¿½ï¿½[ï¿½u")]
+        public GameObject FadeCube;
+    }
+    [Header("ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã™ã‚‹ï¼Ÿ")]
+    [SerializeField] private FadeClass fade;
+
+    private Fade fadeScript;
+    private bool returnTag = false;
 
     private int colorNum = 0;
     private bool clearTag = false;
-    private bool returnTag = false;
 
     void Start()
     {
-        FadeCube.SetActive(false);
-        Camera.main.nearClipPlane = 0.01f;
-        fadescript = FadeCube.GetComponent<Fade>();
+        if (fade.yes)
+        {
+            fade.FadeCube.SetActive(false);
+            fadeScript = fade.FadeCube.GetComponent<Fade>();
+            if (fadeScript == null)
+            {
+                Debug.LogWarning("FadeCube ã« Fade ã‚¹ã‚¯ãƒªãƒ—ãƒˆãŒã‚¢ã‚¿ãƒƒãƒã•ã‚Œã¦ã„ã¾ã›ã‚“");
+            }
+        }
         this.transform.localScale = new Vector3(r, r, r);
         this.transform.position = boxPosition;
     }
 
     void Update()
     {
+ 
         if (Input.GetMouseButtonDown(0) && clearTag)
         {
-            FadeCube.transform.position = camera.transform.position + camera.transform.forward * 0.5f;
-            FadeCube.transform.rotation = camera.transform.rotation;
-            FadeCube.SetActive(true);
-            returnTag = true;
+            if (!fade.yes) ReturnMainScene();
+            else
+            {
+                fade.FadeCube.transform.position = fade.camera.transform.position + fade.camera.transform.forward * 0.5f;
+                fade.FadeCube.transform.rotation = fade.camera.transform.rotation;
+                fade.FadeCube.SetActive(true);
+                returnTag = true;
+            }
         }
         if (returnTag)
         {
-            colorNum = fadescript.colorNow();
+            colorNum = fadeScript.colorNow();
             if (colorNum == 1)
             {
-                SceneManager.LoadScene("MainScene");
+                ReturnMainScene();
             }
         }
     }
@@ -54,7 +74,12 @@ public class Goal : MonoBehaviour
         {
             Debug.Log("Clear!!!");
             clearTag = true;
-            // ‚±‚±‚ÅƒS[ƒ‹—p‚ÌŠÖ”‚ğŒÄ‚Ño‚·.
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ÅƒSï¿½[ï¿½ï¿½ï¿½pï¿½ÌŠÖï¿½ï¿½ï¿½ï¿½Ä‚Ñoï¿½ï¿½.
         }
+    }
+
+    void ReturnMainScene()
+    {
+        SceneManager.LoadScene("MainScene");
     }
 }
