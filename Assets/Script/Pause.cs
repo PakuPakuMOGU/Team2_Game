@@ -27,7 +27,7 @@ public class Pause : MonoBehaviour
             if (isPaused)
             {
                 Time.timeScale = 0f; // í‚é~
-                SetAlpha(pauseBack, 1f);
+                SetAlpha(pauseBack, 0.5f);
                 SetAlpha(pauseTxt, 1f);
             }
             else
