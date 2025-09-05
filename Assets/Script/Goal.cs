@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Goal : MonoBehaviour
 {
-    [Header("�S�[�����W�͈�")]
+    [Header("クリアポイント設定")]
     public Vector3 boxPosition = new Vector3(0, 0, 0);
     public float r = 5;
 
@@ -14,10 +14,10 @@ public class Goal : MonoBehaviour
     {
         public bool yes = true;
 
-        [Header("���C���J����")]
+        [Header("メインカメラ")]
         public Camera camera;
 
-        [Header("�t�F�[�h�L���[�u")]
+        [Header("フェードオブジェクト")]
         public GameObject FadeCube;
     }
     [Header("フェードアウトする？")]
@@ -73,7 +73,7 @@ public class Goal : MonoBehaviour
         {
             Debug.Log("Clear!!!");
             clearTag = true;
-            // �����ŃS�[���p�̊֐����Ăяo��.
+            // ここにクリア時の処理を書く.
         }
     }
 
