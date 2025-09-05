@@ -16,7 +16,7 @@ public class Goal : MonoBehaviour
         this.transform.position = boxPosition;
     }
 
-    void UpDate()
+    void Update()
     {
         if (Input.GetMouseButtonDown(0) && clearTag)
         {
@@ -29,7 +29,7 @@ public class Goal : MonoBehaviour
         if (collider.gameObject.tag == "Player")
         {
             Debug.Log("Clear!!!");
-            
+            clearTag = true;
             // ‚±‚±‚ÅƒS[ƒ‹—p‚ÌŠÖ”‚ğŒÄ‚Ño‚·.
         }
     }
