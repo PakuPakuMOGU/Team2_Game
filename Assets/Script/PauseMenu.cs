@@ -1,61 +1,62 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public Image pauseBack;
-    public Text pauseTxt;
-    public GameObject pausePanel;
+    public Image pauseBack;             // 背景パネル
+    public TextMeshProUGUI pauseTxt;    // ポーズ用テキスト
+    public Button quitButton;           // Quit ボタン
+    public Button optionButton;         // Option ボタン
 
     private bool isPaused = false;
 
     void Start()
     {
-        SetAlpha(pauseBack, 0f);
-        SetAlpha(pauseTxt, 0f);
-        pausePanel.SetActive(false);
+        // 初期状態は透明に
+        SetPauseUI(false);
     }
 
     void Update()
     {
+        // Shift キーでポーズ切替
         if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
         {
-            if (isPaused) ResumeGame();
-            else ShowPause();
+            isPaused = !isPaused;
+            SetPauseUI(isPaused);
+            Time.timeScale = isPaused ? 0f : 1f;  // ポーズ中はゲーム停止
+        }
+
+        // ポーズ中に Esc で終了
+        if (isPaused && Input.GetKeyDown(KeyCode.Escape))
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
         }
     }
 
-    public void ShowPause()
+    private void SetPauseUI(bool active)
     {
-        pausePanel.SetActive(true);
-        SetAlpha(pauseBack, 1f);
-        SetAlpha(pauseTxt, 1f);
-        Time.timeScale = 0f;
-        isPaused = true;
+        // 背景は半透明
+        if (pauseBack != null)
+            SetAlpha(pauseBack, active ? 0.5f : 0f);
+
+        // テキストは完全不透明
+        if (pauseTxt != null)
+            SetAlpha(pauseTxt, active ? 1f : 0f);
+
+        // ボタンも透明度で管理
+        if (quitButton != null)
+            SetButtonAlpha(quitButton, active ? 1f : 0f);
+        if (optionButton != null)
+            SetButtonAlpha(optionButton, active ? 1f : 0f);
     }
 
-    public void ResumeGame()
-    {
-        pausePanel.SetActive(false);
-        SetAlpha(pauseBack, 0f);
-        SetAlpha(pauseTxt, 0f);
-        Time.timeScale = 1f;
-        isPaused = false;
-    }
-
-    public void QuitGame()
-    {
-        Application.Quit();
-        Debug.Log("ゲーム終了");
-    }
-
-    public void LoadTitle()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("TitleScene");
-    }
-
+    // Graphic の透明度を変更
     private void SetAlpha(Graphic g, float alpha)
     {
         if (g != null)
@@ -64,5 +65,41 @@ public class PauseMenu : MonoBehaviour
             c.a = alpha;
             g.color = c;
         }
+    }
+
+    // Button 内の Image と TextMeshProUGUI をまとめて透明度変更
+    private void SetButtonAlpha(Button button, float alpha)
+    {
+        if (button == null) return;
+
+        // ボタン背景 Image
+        Image img = button.GetComponent<Image>();
+        if (img != null)
+            SetAlpha(img, alpha);
+
+        // ボタンのテキスト
+        TextMeshProUGUI txt = button.GetComponentInChildren<TextMeshProUGUI>();
+        if (txt != null)
+            SetAlpha(txt, alpha);
+
+        // ボタン自体の interactable は alpha に応じて切替（任意）
+        button.interactable = alpha > 0f;
+    }
+
+    // ボタン用メソッド
+    public void QuitGame()
+    {
+        Time.timeScale = 1f;
+        Application.Quit();
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
+
+    public void OpenOption()
+    {
+        Debug.Log("Option画面を開く処理をここに追加");
     }
 }
