@@ -46,7 +46,6 @@ public class Goal : MonoBehaviour
 
     void Update()
     {
- 
         if (Input.GetMouseButtonDown(0) && clearTag)
         {
             if (!fade.yes) ReturnMainScene();
