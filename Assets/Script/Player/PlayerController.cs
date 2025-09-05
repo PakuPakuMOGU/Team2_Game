@@ -8,6 +8,9 @@ public class SimplePlayerControllerOldInput : MonoBehaviour
     public float speed = 5f;
     public float jumpForce = 5f;
 
+    [Header("チェックポイントスクリプト")]
+    public CheckPoint Check;
+
     private bool jumpRequested = false;
 
     private void Awake()
@@ -44,6 +47,12 @@ public class SimplePlayerControllerOldInput : MonoBehaviour
             rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
             jumpRequested = false;
         }
+    }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        string tag = collider.gameObject.tag;
+        Check.TagCheck(tag);
     }
 }
 
