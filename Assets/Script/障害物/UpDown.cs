@@ -62,6 +62,8 @@ public class UpDown : MonoBehaviour
         {
             transform.position = v3Position;
         }
+        else
+            GivePositionY();
     }
 
     public void GivePositionY()
