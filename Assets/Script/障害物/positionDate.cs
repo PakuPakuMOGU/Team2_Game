@@ -43,7 +43,7 @@ public class positionDate : MonoBehaviour
         return - 1.0f;
     }
 
-    // Œ»İ‚ÌÀ•W‚ğ•Ô‚·.
+    // Œ»İ‚ÌÀ•W‚ğ•Ï‚¦‚é.
     public void NowPositionChange(char xyz, float num)
     {
         switch (xyz)
