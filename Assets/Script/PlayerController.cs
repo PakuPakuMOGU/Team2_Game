@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class SimplePlayerControllerOldInput : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     private Rigidbody rb;
 
@@ -13,6 +13,9 @@ public class SimplePlayerControllerOldInput : MonoBehaviour
 
     private bool jumpRequested = false;
     private bool isGrounded = false;
+
+    [Header("カメラのTransform")]
+    public Transform cameraTransform;
 
     private void Awake()
     {
@@ -33,8 +36,22 @@ public class SimplePlayerControllerOldInput : MonoBehaviour
         float moveX = Input.GetAxis("Horizontal");
         float moveZ = Input.GetAxis("Vertical");
 
-        Vector3 move = new Vector3(moveX, 0, moveZ);
-        Vector3 velocity = move.normalized * speed;
+        // 入力ベクトル
+        Vector3 input = new Vector3(moveX, 0f, moveZ).normalized;
+
+        // カメラの向きから前方向と右方向を取得（Y軸だけの向きにする）
+        Vector3 camForward = cameraTransform.forward;
+        Vector3 camRight = cameraTransform.right;
+
+        camForward.y = 0;
+        camRight.y = 0;
+        camForward.Normalize();
+        camRight.Normalize();
+
+        // 入力をカメラ基準で変換（カメラの正面がプレイヤーの前になる）
+        Vector3 move = camForward * input.z + camRight * input.x;
+
+        Vector3 velocity = move * speed;
         velocity.y = rb.velocity.y;
 
         rb.velocity = velocity;
@@ -42,7 +59,7 @@ public class SimplePlayerControllerOldInput : MonoBehaviour
         if (jumpRequested && isGrounded)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
-            isGrounded = false; // ジャンプ直後に空中にする
+            isGrounded = false;
             jumpRequested = false;
         }
     }
@@ -53,25 +70,21 @@ public class SimplePlayerControllerOldInput : MonoBehaviour
         Check.TagCheck(tag);
     }
 
-    // タグなしで地面との接触を判定
     private void OnCollisionStay(Collision collision)
     {
         foreach (ContactPoint contact in collision.contacts)
         {
-            // 接触面の法線が上方向（地面）に近ければ地面とみなす
             if (Vector3.Dot(contact.normal, Vector3.up) > 0.5f)
             {
                 isGrounded = true;
                 return;
             }
         }
-        // 上向きの接触面がなければ false
         isGrounded = false;
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        // 接触がなくなったら空中とみなす
         isGrounded = false;
     }
 }
