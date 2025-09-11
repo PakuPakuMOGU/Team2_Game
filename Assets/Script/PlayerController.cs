@@ -39,23 +39,13 @@ public class SimplePlayerControllerOldInput : MonoBehaviour
 
         rb.velocity = velocity;
 
-<<<<<<< HEAD:Assets/Script/PlayerController.cs
-<<<<<<< HEAD:Assets/Script/PlayerController.cs
         if (jumpRequested && isGrounded)
-=======
-        // ƒWƒƒƒ“ƒvˆ—i’n–Ê”»’è‚È‚µj
-=======
->>>>>>> 07dcda6 (no message):Assets/Script/Player/PlayerController.cs
-        if (jumpRequested)
->>>>>>> 6077e21 (Revert "ç„¡é™ã‚¸ãƒ£ãƒ³ãƒ—æ¶ˆãˆãŸï¼ˆèï¼‰"):Assets/Script/Player/PlayerController.cs
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
             isGrounded = false; // ƒWƒƒƒ“ƒv’¼Œã‚É‹ó’†‚É‚·‚é
             jumpRequested = false;
         }
     }
-<<<<<<< HEAD:Assets/Script/PlayerController.cs
-<<<<<<< HEAD:Assets/Script/PlayerController.cs
 
     void OnTriggerEnter(Collider collider)
     {
@@ -85,33 +75,3 @@ public class SimplePlayerControllerOldInput : MonoBehaviour
         isGrounded = false;
     }
 }
-=======
-}
-=======
->>>>>>> 07dcda6 (no message):Assets/Script/Player/PlayerController.cs
-
-    // ’n–Ê‚ÆÚG‚µ‚Ä‚¢‚ê‚Î isGrounded = true
-    private void OnCollisionStay(Collision collision)
-    {
-        isGrounded = true;
-    }
-
-    // ÚG‚ªI‚í‚Á‚½‚ç isGrounded = false
-    private void OnCollisionExit(Collision collision)
-    {
-        isGrounded = false;
-    }
-}
-<<<<<<< HEAD:Assets/Script/PlayerController.cs
-
-// ’n–ÊŒŸo—pRay‚ğŠm”F‚µ‚½‚¢‚Æ‚«‚Í‚±‚±‚ğON
-private void OnDrawGizmosSelected()
-{
-    Gizmos.color = Color.red;
-    Gizmos.DrawLine(transform.position, transform.position + Vector3.down * 1.1f);
-}
-}
-*/
->>>>>>> 6077e21 (Revert "ç„¡é™ã‚¸ãƒ£ãƒ³ãƒ—æ¶ˆãˆãŸï¼ˆèï¼‰"):Assets/Script/Player/PlayerController.cs
-=======
->>>>>>> 07dcda6 (no message):Assets/Script/Player/PlayerController.cs
