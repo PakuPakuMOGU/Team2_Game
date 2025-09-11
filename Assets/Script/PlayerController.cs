@@ -12,6 +12,7 @@ public class SimplePlayerControllerOldInput : MonoBehaviour
     public CheckPoint Check;
 
     private bool jumpRequested = false;
+    private bool isGrounded = false;
 
     private void Awake()
     {
@@ -21,8 +22,7 @@ public class SimplePlayerControllerOldInput : MonoBehaviour
 
     private void Update()
     {
-        // ƒWƒƒƒ“ƒv“ü—Í‚ÍUpdate‚ÅŒŸ’miƒtƒŒ[ƒ€–ˆj
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
             jumpRequested = true;
         }
@@ -30,20 +30,22 @@ public class SimplePlayerControllerOldInput : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // ˆÚ“®“ü—Í‚ğæ“¾
-        float moveX = Input.GetAxis("Horizontal"); // A/D or ©¨ƒL[
-        float moveZ = Input.GetAxis("Vertical");   // W/S or ª«ƒL[
+        float moveX = Input.GetAxis("Horizontal");
+        float moveZ = Input.GetAxis("Vertical");
 
         Vector3 move = new Vector3(moveX, 0, moveZ);
         Vector3 velocity = move.normalized * speed;
-        velocity.y = rb.velocity.y; // ‚’¼‘¬“x‚ÍˆÛ
+        velocity.y = rb.velocity.y;
 
         rb.velocity = velocity;
 
 <<<<<<< HEAD:Assets/Script/PlayerController.cs
+<<<<<<< HEAD:Assets/Script/PlayerController.cs
         if (jumpRequested && isGrounded)
 =======
         // ƒWƒƒƒ“ƒvˆ—i’n–Ê”»’è‚È‚µj
+=======
+>>>>>>> 07dcda6 (no message):Assets/Script/Player/PlayerController.cs
         if (jumpRequested)
 >>>>>>> 6077e21 (Revert "ç„¡é™ã‚¸ãƒ£ãƒ³ãƒ—æ¶ˆãˆãŸï¼ˆèï¼‰"):Assets/Script/Player/PlayerController.cs
         {
@@ -52,6 +54,7 @@ public class SimplePlayerControllerOldInput : MonoBehaviour
             jumpRequested = false;
         }
     }
+<<<<<<< HEAD:Assets/Script/PlayerController.cs
 <<<<<<< HEAD:Assets/Script/PlayerController.cs
 
     void OnTriggerEnter(Collider collider)
@@ -84,51 +87,22 @@ public class SimplePlayerControllerOldInput : MonoBehaviour
 }
 =======
 }
+=======
+>>>>>>> 07dcda6 (no message):Assets/Script/Player/PlayerController.cs
 
-/*
-[RequireComponent(typeof(Rigidbody))]
-public class PlayerController : MonoBehaviour
-{
-public float moveSpeed = 5f;
-public float jumpForce = 7f;
-
-private Rigidbody rb;
-private bool isGrounded;
-
-void Start()
-{
-    rb = GetComponent<Rigidbody>();
-}
-
-void Update()
-{
-    Move();
-    Jump();
-}
-
-void Move()
-{
-    float moveX = Input.GetAxis("Horizontal");
-    float moveZ = Input.GetAxis("Vertical");
-
-    Vector3 move = new Vector3(moveX, 0f, moveZ) * moveSpeed;
-
-    Vector3 velocity = rb.velocity;
-    velocity.x = move.x;
-    velocity.z = move.z;
-    rb.velocity = velocity;
-}
-
-void Jump()
-{
-    // ‚·‚×‚Ä‚ÌƒRƒ‰ƒCƒ_[‚É‘Î‚µ‚Ä’n–Êƒ`ƒFƒbƒN‚·‚é
-    isGrounded = Physics.Raycast(transform.position, Vector3.down, 1.1f);
-
-    if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+    // ’n–Ê‚ÆÚG‚µ‚Ä‚¢‚ê‚Î isGrounded = true
+    private void OnCollisionStay(Collision collision)
     {
-        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        isGrounded = true;
+    }
+
+    // ÚG‚ªI‚í‚Á‚½‚ç isGrounded = false
+    private void OnCollisionExit(Collision collision)
+    {
+        isGrounded = false;
     }
 }
+<<<<<<< HEAD:Assets/Script/PlayerController.cs
 
 // ’n–ÊŒŸo—pRay‚ğŠm”F‚µ‚½‚¢‚Æ‚«‚Í‚±‚±‚ğON
 private void OnDrawGizmosSelected()
@@ -139,3 +113,5 @@ private void OnDrawGizmosSelected()
 }
 */
 >>>>>>> 6077e21 (Revert "ç„¡é™ã‚¸ãƒ£ãƒ³ãƒ—æ¶ˆãˆãŸï¼ˆèï¼‰"):Assets/Script/Player/PlayerController.cs
+=======
+>>>>>>> 07dcda6 (no message):Assets/Script/Player/PlayerController.cs
