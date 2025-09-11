@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class SimplePlayerControllerOldInput : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     private Rigidbody rb;
 
@@ -12,6 +12,7 @@ public class SimplePlayerControllerOldInput : MonoBehaviour
     public CheckPoint Check;
 
     private bool jumpRequested = false;
+    private bool isGrounded = false;
 
     private void Awake()
     {
@@ -21,8 +22,7 @@ public class SimplePlayerControllerOldInput : MonoBehaviour
 
     private void Update()
     {
-        // ジャンプ入力はUpdateで検知（フレーム毎）
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
             jumpRequested = true;
         }
@@ -30,21 +30,19 @@ public class SimplePlayerControllerOldInput : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // 移動入力を取得
-        float moveX = Input.GetAxis("Horizontal"); // A/D or ←→キー
-        float moveZ = Input.GetAxis("Vertical");   // W/S or ↑↓キー
+        float moveX = Input.GetAxis("Horizontal");
+        float moveZ = Input.GetAxis("Vertical");
 
         Vector3 move = new Vector3(moveX, 0, moveZ);
-
         Vector3 velocity = move.normalized * speed;
-        velocity.y = rb.velocity.y; // 垂直速度は維持
+        velocity.y = rb.velocity.y;
 
         rb.velocity = velocity;
 
-        // ジャンプ処理（地面判定なし）
-        if (jumpRequested)
+        if (jumpRequested && isGrounded)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+            isGrounded = false; // ジャンプ直後に空中にする
             jumpRequested = false;
         }
     }
@@ -54,58 +52,26 @@ public class SimplePlayerControllerOldInput : MonoBehaviour
         string tag = collider.gameObject.tag;
         Check.TagCheck(tag);
     }
-}
 
-/*
-[RequireComponent(typeof(Rigidbody))]
-public class PlayerController : MonoBehaviour
-{
-public float moveSpeed = 5f;
-public float jumpForce = 7f;
-
-private Rigidbody rb;
-private bool isGrounded;
-
-void Start()
-{
-    rb = GetComponent<Rigidbody>();
-}
-
-void Update()
-{
-    Move();
-    Jump();
-}
-
-void Move()
-{
-    float moveX = Input.GetAxis("Horizontal");
-    float moveZ = Input.GetAxis("Vertical");
-
-    Vector3 move = new Vector3(moveX, 0f, moveZ) * moveSpeed;
-
-    Vector3 velocity = rb.velocity;
-    velocity.x = move.x;
-    velocity.z = move.z;
-    rb.velocity = velocity;
-}
-
-void Jump()
-{
-    // すべてのコライダーに対して地面チェックする
-    isGrounded = Physics.Raycast(transform.position, Vector3.down, 1.1f);
-
-    if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+    // タグなしで地面との接触を判定
+    private void OnCollisionStay(Collision collision)
     {
-        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        foreach (ContactPoint contact in collision.contacts)
+        {
+            // 接触面の法線が上方向（地面）に近ければ地面とみなす
+            if (Vector3.Dot(contact.normal, Vector3.up) > 0.5f)
+            {
+                isGrounded = true;
+                return;
+            }
+        }
+        // 上向きの接触面がなければ false
+        isGrounded = false;
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        // 接触がなくなったら空中とみなす
+        isGrounded = false;
     }
 }
-
-// 地面検出用Rayを確認したいときはここをON
-private void OnDrawGizmosSelected()
-{
-    Gizmos.color = Color.red;
-    Gizmos.DrawLine(transform.position, transform.position + Vector3.down * 1.1f);
-}
-}
-*/
