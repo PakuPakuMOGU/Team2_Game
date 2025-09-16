@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,55 +14,39 @@ public class Goal : MonoBehaviour
     public class FadeClass
     {
         public bool yes = true;
-
-        [Header("メインカメラ")]
-        public Camera camera;
-
-        [Header("フェードオブジェクト")]
-        public GameObject FadeCube;
+        public FadeInOut fadeScript;
     }
     [Header("フェードアウトする？")]
     [SerializeField] private FadeClass fade;
-
-    private Fade fadeScript;
-    private int colorNum = 0;
+    private bool fadeStarted = false;
 
     void Start()
     {
-        if (fade.yes)
-        {
-            fade.FadeCube.SetActive(false);
-            fadeScript = fade.FadeCube.GetComponent<Fade>();
-            if (fadeScript == null)
-            {
-                Debug.LogWarning("FadeCube に Fade スクリプトがアタッチされていません");
-            }
-        }
         this.transform.localScale = new Vector3(r, r, r);
         this.transform.position = boxPosition;
     }
 
     void Update()
     {
-        if (ShareVariable.Share.clear)
+        if (ShareVariable.Share.clear && !fadeStarted)
         {
-            if (!fade.yes) ReturnMainScene();
+            fadeStarted = true;
+
+            if (!fade.yes)
+            {
+                ReturnMainScene();           // フェードしない場合すぐに移行.
+            }
             else
             {
-                // カメラの位置・向きに合わせてフェードアウト用オブジェクトの位置を調整.
-                fade.FadeCube.transform.position = fade.camera.transform.position + fade.camera.transform.forward * 0.5f;
-                fade.FadeCube.transform.rotation = fade.camera.transform.rotation;
-                fade.FadeCube.SetActive(true);
-                colorNum = fadeScript.colorNow();
-                if (colorNum == 1)  ReturnMainScene();
-                
+                fade.fadeScript.OnFadeComplete = ReturnMainScene;
+                fade.fadeScript.StartFade();
             }
         }
     }
 
     void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.tag == "Player")
+        if (collider.CompareTag("Player"))
         {
             Debug.Log("Clear!!!");
             ShareVariable.Share.clear = true;   // 全体共有の変数を変更.
@@ -69,8 +54,7 @@ public class Goal : MonoBehaviour
     }
 
     void ReturnMainScene()
-    {
-        //SceneManager.LoadScene("MainScene", LoadSceneMode.Additive);
+    { 
         SceneManager.LoadScene("MainScene");
     }
 }
