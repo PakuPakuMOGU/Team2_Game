@@ -54,6 +54,18 @@ public class PauseMenu : MonoBehaviour
             SetButtonAlpha(quitButton, active ? 1f : 0f);
         if (optionButton != null)
             SetButtonAlpha(optionButton, active ? 1f : 0f);
+
+        // ★ カーソル制御を追加
+        if (active)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
 
     // Graphic の透明度を変更
@@ -82,7 +94,7 @@ public class PauseMenu : MonoBehaviour
         if (txt != null)
             SetAlpha(txt, alpha);
 
-        // ボタン自体の interactable は alpha に応じて切替（任意）
+        // ボタン自体の interactable は alpha に応じて切替
         button.interactable = alpha > 0f;
     }
 
@@ -90,9 +102,11 @@ public class PauseMenu : MonoBehaviour
     public void QuitGame()
     {
         Time.timeScale = 1f;
-        Application.Quit();
+        Cursor.lockState = CursorLockMode.None; 
+        Cursor.visible = true;
+
 #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
+        UnityEditor.EditorApplication.isPlaying = false;
 #else
         Application.Quit();
 #endif
@@ -101,5 +115,7 @@ public class PauseMenu : MonoBehaviour
     public void OpenOption()
     {
         Debug.Log("Option画面を開く処理をここに追加");
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }
