@@ -452,6 +452,7 @@ GameObject:
   - component: {fileID: 713993241}
   - component: {fileID: 713993240}
   - component: {fileID: 713993239}
+  - component: {fileID: 713993244}
   m_Layer: 0
   m_Name: Goal
   m_TagString: Untagged
@@ -475,8 +476,7 @@ MonoBehaviour:
   r: 5
   fade:
     yes: 1
-    camera: {fileID: 1002283902}
-    FadeCube: {fileID: 114678487}
+    fadeScript: {fileID: 713993244}
 --- !u!65 &713993240
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -563,6 +563,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &713993244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 713993238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9548dc891f212f345a7a77e12a426345, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeScript: {fileID: 114678488}
+  camera: {fileID: 1002283900}
+  FadeCube: {fileID: 114678487}
 --- !u!1 &840434648
 GameObject:
   m_ObjectHideFlags: 0
