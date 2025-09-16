@@ -24,10 +24,7 @@ public class Goal : MonoBehaviour
     [SerializeField] private FadeClass fade;
 
     private Fade fadeScript;
-    private bool returnTag = false;
-
     private int colorNum = 0;
-    private bool clearTag = false;
 
     void Start()
     {
@@ -46,23 +43,18 @@ public class Goal : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && clearTag)
+        if (ShareVariable.Share.clear)
         {
             if (!fade.yes) ReturnMainScene();
             else
             {
+                // カメラの位置・向きに合わせてフェードアウト用オブジェクトの位置を調整.
                 fade.FadeCube.transform.position = fade.camera.transform.position + fade.camera.transform.forward * 0.5f;
                 fade.FadeCube.transform.rotation = fade.camera.transform.rotation;
                 fade.FadeCube.SetActive(true);
-                returnTag = true;
-            }
-        }
-        if (returnTag)
-        {
-            colorNum = fadeScript.colorNow();
-            if (colorNum == 1)
-            {
-                ReturnMainScene();
+                colorNum = fadeScript.colorNow();
+                if (colorNum == 1)  ReturnMainScene();
+                
             }
         }
     }
@@ -72,13 +64,13 @@ public class Goal : MonoBehaviour
         if (collider.gameObject.tag == "Player")
         {
             Debug.Log("Clear!!!");
-            clearTag = true;
-            // ここにクリア時の処理を書く.
+            ShareVariable.Share.clear = true;   // 全体共有の変数を変更.
         }
     }
 
     void ReturnMainScene()
     {
+        //SceneManager.LoadScene("MainScene", LoadSceneMode.Additive);
         SceneManager.LoadScene("MainScene");
     }
 }
