@@ -70,6 +70,7 @@ public class Goal : MonoBehaviour
 
     void ReturnMainScene()
     {
+        //SceneManager.LoadScene("MainScene", LoadSceneMode.Additive);
         SceneManager.LoadScene("MainScene");
     }
 }
