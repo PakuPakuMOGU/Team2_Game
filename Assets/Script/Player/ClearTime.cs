@@ -18,7 +18,7 @@ public class ClearTime : MonoBehaviour
 
     void Update()
     {
-        if (timeCount >= 60)
+        if (timeCount >= 60 && !ShareVariable.Share.clear)
         {
             timeCount = 0;
             time++;

@@ -9,3 +9,5 @@ public class ShareVariable : MonoBehaviour
         public static bool clear = false;
     }
 }
+
+/* --- 全体共有する変数用のスクリプトです --- */
