@@ -24,8 +24,6 @@ public class Goal : MonoBehaviour
     [SerializeField] private FadeClass fade;
 
     private Fade fadeScript;
-    private bool returnTag = false;
-
     private int colorNum = 0;
 
     void Start()
