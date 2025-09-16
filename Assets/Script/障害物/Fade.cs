@@ -49,6 +49,13 @@ public class Fade : MonoBehaviour
 
     public int colorNow()
     {
+
+        if (mesh == null || mesh.material == null)
+        {
+            Debug.Log("[Fade] MeshRenderer ‚Ü‚½‚Í Material ‚ª null ‚Å‚·");
+            return -1;
+        }
+
         return (int)mesh.material.color.a;
     }
 }
