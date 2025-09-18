@@ -21,21 +21,20 @@ public class Pose : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
         {
             isPaused = !isPaused;
-
+            float alpha = 0f;
             if (isPaused)
             {
-                // 表示
-                SetAlpha(PoseBack, 1f);
-                SetAlpha(Posetxt, 1f);
+                alpha = 1f;
                 Time.timeScale = 0f; // ゲーム停止
             }
             else
             {
-                // 非表示
-                SetAlpha(PoseBack, 0f);
-                SetAlpha(Posetxt, 0f);
                 Time.timeScale = 1f; // ゲーム再開
             }
+            
+            // 表示
+            SetAlpha(PoseBack, alpha);
+            SetAlpha(Posetxt,  alpha);
         }
     }
 
