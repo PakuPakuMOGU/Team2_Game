@@ -29,7 +29,7 @@ public class CheckPoint : MonoBehaviour
 
     void Update()
     {
-         Debug.Log(playerPosition);   // チェックポイント変更確認用.
+         //Debug.Log(playerPosition);   // チェックポイント変更確認用.
     }
 
     public void TagCheck(string tag)
@@ -40,6 +40,17 @@ public class CheckPoint : MonoBehaviour
             if (tag == listTag[i])
             {
                 playerPosition = listPosition[i];
+                GameObject obj = GameObject.FindWithTag(tag);
+                if (obj != null)
+                {
+                    Runestone_Controller rune = obj.GetComponent<Runestone_Controller>();
+                    if (rune != null)
+                    {
+                        rune.ToggleRuneStone(true);              
+                    }
+                    else Debug.Log("Runestone_Controllerが見つかりません");
+                }
+                else Debug.Log("タグ ：" + tag + "が見つかりません");
             }
         }
     }
