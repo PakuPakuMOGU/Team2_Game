@@ -1228,6 +1228,7 @@ GameObject:
   - component: {fileID: 2003621531}
   - component: {fileID: 2003621530}
   - component: {fileID: 2003621535}
+  - component: {fileID: 2003621536}
   m_Layer: 0
   m_Name: Sphere (1)
   m_TagString: Player
@@ -1363,6 +1364,20 @@ MonoBehaviour:
   speed: 5
   jumpForce: 5
   Check: {fileID: 840434649}
+--- !u!114 &2003621536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003621528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a738204c28f64b45a11014f5b136749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PoseBack: {fileID: 0}
+  Posetxt: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
