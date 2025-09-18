@@ -14,7 +14,6 @@ public class Portal_Controller : MonoBehaviour
     [SerializeField] private Renderer portalRenderer;
     [SerializeField] private ParticleSystem[] effectsParticles;
     [SerializeField] private Light portalLight;
-    [SerializeField] private AudioSource orbAudio, flashAudio, portalAudio;
 
     private float maxVolOrb = 0.08f, maxVolportal = 0.8f, maxIntPortalLight = 4;
     private float transitionSpeed = 0.3f;
@@ -56,16 +55,9 @@ public class Portal_Controller : MonoBehaviour
     private IEnumerator PreActivate()
     {
         inTransition = true;
-
-        orbAudio.volume = maxVolOrb;
-        orbAudio.Play();
-
         effectsParticles[0].Play();
 
         yield return new WaitForSeconds(2.2f);
-
-        flashAudio.Play();
-        portalAudio.Play();
 
         yield return new WaitForSeconds(0.3f);
 
@@ -83,12 +75,9 @@ public class Portal_Controller : MonoBehaviour
             {
                 fadeFloat = Mathf.MoveTowards(fadeFloat, 1f, Time.deltaTime * transitionSpeed);
 
-                orbAudio.volume -= Time.deltaTime * 0.1f;
-
                 if (fadeFloat >= 1f)//transition finished
                 {
                     inTransition = false;
-                    orbAudio.Stop();
                 }
             }
             else //transition to off
@@ -98,15 +87,11 @@ public class Portal_Controller : MonoBehaviour
                 if (fadeFloat <= 0f)//transition finished
                 {
                     inTransition = false;
-    
-                    portalAudio.Stop();
                     effectsParticles[2].Stop();
                 }
             }
     
             //fade in/out
-            portalAudio.volume = maxVolportal * fadeFloat;
-
             portalEffectMat.SetFloat("_PortalFade", fadeFloat);
             portalMat.SetFloat("_EmissionStrength", fadeFloat);
 
@@ -134,8 +119,6 @@ public class Portal_Controller : MonoBehaviour
             ParticleSystem.MainModule mod = part.main;
             mod.startColor = portalEffectColor;
         }
-        
-        portalAudio.volume = 0f;
         portalLight.intensity = 0f;
     }
 }
