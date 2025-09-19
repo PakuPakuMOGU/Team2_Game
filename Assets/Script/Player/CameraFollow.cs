@@ -1,3 +1,4 @@
+// CameraFollow.cs
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
@@ -6,8 +7,8 @@ public class CameraFollow : MonoBehaviour
     public Transform target;
 
     [Header("カメラの距離と高さ")]
-    public float distance = 5.0f;
-    public float height = 2.0f;
+    public float distance = 6.0f;
+    public float height = 3.0f;
 
     [Header("回転感度")]
     public float mouseSensitivity = 3.0f;
@@ -19,8 +20,8 @@ public class CameraFollow : MonoBehaviour
     [Header("追従スピード")]
     public float followSpeed = 10f;
 
-    private float rotationX = 0f; // 上下回転角
-    private float rotationY = 0f; // 左右回転角
+    private float rotationX = 0f;
+    private float rotationY = 0f;
 
     void Start()
     {
@@ -36,26 +37,29 @@ public class CameraFollow : MonoBehaviour
     {
         if (target == null) return;
 
-        // マウス入力取得
+        // マウス入力を取得
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
 
-        // 回転角を更新（上下方向は制限する）
-        rotationY += mouseX;
-        rotationX -= mouseY;
-        rotationX = Mathf.Clamp(rotationX, minYAngle, maxYAngle);
+        // カメラの回転角度を更新
+        rotationY += mouseX; // 水平方向（左右）
+        rotationX -= mouseY; // 垂直方向（上下）
+        rotationX = Mathf.Clamp(rotationX, minYAngle, maxYAngle); // 上下の回転角度を制限
 
-        // 回転からカメラの位置を計算
+        // カメラの回転をクォータニオンで作成
         Quaternion rotation = Quaternion.Euler(rotationX, rotationY, 0);
+
+        // 追従対象の位置 + 高さ
         Vector3 targetPosition = target.position + Vector3.up * height;
-        Vector3 cameraPosition = targetPosition - rotation * Vector3.forward * distance;
 
-        // カメラを滑らかに移動
-        transform.position = Vector3.Lerp(transform.position, cameraPosition, followSpeed * Time.deltaTime);
+        // カメラの位置を計算（rotation を使って target の周りを回る）
+        Vector3 cameraOffset = rotation * new Vector3(0, 0, -distance);
+        Vector3 desiredPosition = targetPosition + cameraOffset;
 
-        // カメラの向きをターゲットに向ける
+        // カメラの位置を滑らかに補間
+        transform.position = Vector3.Lerp(transform.position, desiredPosition, followSpeed * Time.deltaTime);
+
+        // カメラが常にプレイヤーを見るように
         transform.LookAt(targetPosition);
     }
 }
-
-
