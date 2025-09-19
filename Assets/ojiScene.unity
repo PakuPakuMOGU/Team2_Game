@@ -842,16 +842,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1002283900}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d02eb8ef69b63a84488bbbbecf63387d, type: 3}
+  m_Script: {fileID: 11500000, guid: 64e936c0da70925418e7d37d56b7c8bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 2003621534}
-  distance: 5
-  height: 2
+  distance: 6
+  height: 3
   mouseSensitivity: 3
   minYAngle: -20
   maxYAngle: 80
-  followSpeed: 5
+  followSpeed: 10
 --- !u!1 &1378936777
 GameObject:
   m_ObjectHideFlags: 0
