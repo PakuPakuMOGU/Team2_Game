@@ -29,7 +29,7 @@ public class CheckPoint : MonoBehaviour
 
     void Update()
     {
-         //Debug.Log(playerPosition);   // チェックポイント変更確認用.
+         //Debug.Log(playerPosition);
     }
 
     public void TagCheck(string tag)
