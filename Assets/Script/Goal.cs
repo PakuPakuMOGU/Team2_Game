@@ -1,12 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Goal : MonoBehaviour
 {
-    [Header("ƒS[ƒ‹À•W”ÍˆÍ")]
+    [Header("ã‚¯ãƒªã‚¢ãƒã‚¤ãƒ³ãƒˆè¨­å®š")]
     public Vector3 boxPosition = new Vector3(0, 0, 0);
     public float r = 5;
+
+    [System.Serializable]
+    public class FadeClass
+    {
+        public bool yes = true;
+        public FadeInOut fadeScript;
+    }
+    [Header("ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã™ã‚‹ï¼Ÿ")]
+    [SerializeField] private FadeClass fade;
+    private bool fadeStarted = false;
 
     void Start()
     {
@@ -14,12 +26,35 @@ public class Goal : MonoBehaviour
         this.transform.position = boxPosition;
     }
 
+    void Update()
+    {
+        if (ShareVariable.Share.clear && !fadeStarted)
+        {
+            fadeStarted = true;
+
+            if (!fade.yes)
+            {
+                ReturnMainScene();           // ãƒ•ã‚§ãƒ¼ãƒ‰ã—ãªã„å ´åˆã™ãã«ç§»è¡Œ.
+            }
+            else
+            {
+                fade.fadeScript.OnFadeComplete = ReturnMainScene;
+                fade.fadeScript.StartFade();
+            }
+        }
+    }
+
     void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.tag == "Player")
+        if (collider.CompareTag("Player"))
         {
             Debug.Log("Clear!!!");
-            // ‚±‚±‚ÅƒS[ƒ‹—p‚ÌŠÖ”‚ğŒÄ‚Ño‚·.
+            ShareVariable.Share.clear = true;   // å…¨ä½“å…±æœ‰ã®å¤‰æ•°ã‚’å¤‰æ›´.
         }
+    }
+
+    void ReturnMainScene()
+    { 
+        SceneManager.LoadScene("MainScene");
     }
 }

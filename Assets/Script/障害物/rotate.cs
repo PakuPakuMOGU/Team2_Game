@@ -20,7 +20,7 @@ public class rotate : MonoBehaviour
         public bool yes = false;
         public UpDown script;
     }
-    [Header("ランダム速度設定する？")]
+    [Header("上下移動させる？")]
     [SerializeField] private UpOrDown updownSet;
 
     [Header("座標設定スクリプト")]

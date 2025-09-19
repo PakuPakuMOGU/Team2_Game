@@ -33,7 +33,7 @@ public class Fade : MonoBehaviour
 
     void Update()
     {
-        if (countdayo > 0)
+        if (countdayo >= 0)
         {
             countdayo--;
             if (first_A > last_A)
@@ -45,5 +45,17 @@ public class Fade : MonoBehaviour
         {
             mesh.material.color = new Color32(currentColor.r, currentColor.g, currentColor.b, (byte)last_A);
         }
+    }
+
+    public int colorNow()
+    {
+
+        if (mesh == null || mesh.material == null)
+        {
+            Debug.Log("[Fade] MeshRenderer ‚Ü‚½‚Í Material ‚ª null ‚Å‚·");
+            return -1;
+        }
+
+        return (int)mesh.material.color.a;
     }
 }

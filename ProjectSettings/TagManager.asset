@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Chack1
+  - Chack2
+  - Chack3
+  - Start
   layers:
   - Default
   - TransparentFX

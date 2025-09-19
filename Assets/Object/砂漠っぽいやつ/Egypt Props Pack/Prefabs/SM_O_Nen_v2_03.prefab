@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5573438658789638748}
   - component: {fileID: 2242489371570787218}
   - component: {fileID: 5684827484191387416}
+  - component: {fileID: 6402031195799187235}
   m_Layer: 0
   m_Name: SM_O_Nen_v2_03
   m_TagString: Untagged
@@ -83,3 +84,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6402031195799187235
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822131044725663802}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4, y: 0.11229462, z: 4}
+  m_Center: {x: 0.0000014901161, y: 0.056147266, z: 0}
