@@ -26,18 +26,18 @@ public class Fade : MonoBehaviour
         Application.targetFrameRate = 60;
 
         if (useMesh)
-{
-    mesh = GetComponent<MeshRenderer>();
-    if (mesh == null)
-    {
-        Debug.LogError("MeshRenderer ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ");
-        return;
-    }
+        {
+            mesh = GetComponent<MeshRenderer>();
+            if (mesh == null)
+            {
+                Debug.LogError("MeshRenderer ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ");
+                return;
+            }
 
-    Color initColor = mesh.material.color;
-    initColor.a = Mathf.Clamp01((float)firstAlpha / 255f);
-    mesh.material.color = initColor;
-}
+            Color initColor = mesh.material.color;
+            initColor.a = Mathf.Clamp01((float)firstAlpha / 255f);
+            mesh.material.color = initColor;
+        }
         else
         {
             image = GetComponent<Image>();
