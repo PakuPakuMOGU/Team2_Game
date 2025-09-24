@@ -1834,6 +1834,7 @@ MonoBehaviour:
   speed: 5
   jumpForce: 5
   Check: {fileID: 840434649}
+  cameraTransform: {fileID: 1002283903}
 --- !u!114 &2003621536
 MonoBehaviour:
   m_ObjectHideFlags: 0
