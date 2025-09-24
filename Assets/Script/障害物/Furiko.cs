@@ -36,6 +36,11 @@ public class Furiko : MonoBehaviour
         count = 0;
         count2 = 0;
         time *= 30;
+        if (runXYZ.Yspeed == 0f)
+        {
+            Debug.Log("Yspeed‚ª0‚Å‚·B0‚ÅœZ‚Í‚Å‚«‚Ü‚¹‚ñB+0.1f‚Å‘ã—p‚µ‚Ü‚·");
+            runXYZ.Yspeed = 0.1f;
+        }
     }
 
     void Update()
