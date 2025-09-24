@@ -57,7 +57,6 @@ public class Fade : MonoBehaviour
 
     void StartFade()
     {
-        Debug.Log("Point");
         if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
         fadeCoroutine = StartCoroutine(FadeAlpha());
     }
@@ -81,16 +80,11 @@ public class Fade : MonoBehaviour
             }
             else
             {
-
-                Debug.Log($"currentAlpha = {currentAlpha}");
                 Color color = image.color;
                 color.a = currentAlpha;
                 image.color = color;
             }
-
-            Debug.Log($"currentAlpha = {currentAlpha}");
             elapsed += Time.deltaTime;
-            Debug.Log($"elapsed = {elapsed}");
             yield return null;
         }
 
