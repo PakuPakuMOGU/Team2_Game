@@ -1,61 +1,128 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Fade : MonoBehaviour
 {
     [Header("最初の透明度は？")]
-    [SerializeField]
-    private int first_A = 0;
+    [SerializeField] private int firstAlpha = 0;
 
     [Header("終わりの透明度は？")]
-    [SerializeField]
-    private int last_A = 255;
+    [SerializeField] private int lastAlpha = 255;
 
-    [Header("所要時間")]
-    [SerializeField]
-    private int colorTime = 1;
+    [Header("所要時間（秒）")]
+    [SerializeField] private float fadeDuration = 1f;
 
-    MeshRenderer mesh;
-    private int countdayo;
-    Color32 currentColor;
+    [Header("Mesh or Image")]
+    [SerializeField] private bool useMesh = true;
+
+    private MeshRenderer mesh;
+    private Image image;
+    private Coroutine fadeCoroutine;
+    private float end;
 
     void Start()
     {
         Application.targetFrameRate = 60;
-        mesh = GetComponent<MeshRenderer>();
-        currentColor = mesh.material.color;
-        mesh.material.color = new Color32(currentColor.r, currentColor.g, currentColor.b, (byte)first_A);
 
-        int value_A = Mathf.Abs(last_A - first_A);
-        countdayo = value_A / colorTime;
+        if (useMesh)
+{
+    mesh = GetComponent<MeshRenderer>();
+    if (mesh == null)
+    {
+        Debug.LogError("MeshRenderer が見つかりません");
+        return;
     }
 
-    void Update()
-    {
-        if (countdayo >= 0)
+    Color initColor = mesh.material.color;
+    initColor.a = Mathf.Clamp01((float)firstAlpha / 255f);
+    mesh.material.color = initColor;
+}
+        else
         {
-            countdayo--;
-            if (first_A > last_A)
-                mesh.material.color -= new Color32(0, 0, 0, (byte)colorTime);
+            image = GetComponent<Image>();
+            if (image == null)
+            {
+                Debug.LogError("Image コンポーネントが見つかりません");
+                return;
+            }
+
+            Color initColor = image.color;
+            initColor.a = Mathf.Clamp01((float)firstAlpha / 255f);
+            image.color = initColor;
+        }
+
+        StartFade();
+    }
+
+    void StartFade()
+    {
+        Debug.Log("Point");
+        if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
+        fadeCoroutine = StartCoroutine(FadeAlpha());
+    }
+
+    IEnumerator FadeAlpha()
+    {
+        float start = Mathf.Clamp01((float)firstAlpha / 255f);
+        end = Mathf.Clamp01((float)lastAlpha / 255f);
+        float elapsed = 0f;
+
+        while (elapsed < fadeDuration)
+        {
+            float t = elapsed / fadeDuration;
+            float currentAlpha = Mathf.Lerp(start, end, t);
+
+            if (useMesh)
+            {
+                Color color = mesh.material.color;
+                color.a = currentAlpha;
+                mesh.material.color = color;
+            }
             else
-                mesh.material.color += new Color32(0, 0, 0, (byte)colorTime);
+            {
+
+                Debug.Log($"currentAlpha = {currentAlpha}");
+                Color color = image.color;
+                color.a = currentAlpha;
+                image.color = color;
+            }
+
+            Debug.Log($"currentAlpha = {currentAlpha}");
+            elapsed += Time.deltaTime;
+            Debug.Log($"elapsed = {elapsed}");
+            yield return null;
+        }
+
+        // 最終値を設定
+        if (useMesh)
+        {
+            Color color = mesh.material.color;
+            color.a = end;
+            mesh.material.color = color;
         }
         else
         {
-            mesh.material.color = new Color32(currentColor.r, currentColor.g, currentColor.b, (byte)last_A);
+            Color color = image.color;
+            color.a = end;
+            image.color = color;
         }
     }
 
-    public int colorNow()
+    public float GetCurrentAlpha()
     {
-
-        if (mesh == null || mesh.material == null)
+        if (useMesh && mesh != null)
         {
-            Debug.Log("[Fade] MeshRenderer または Material が null です");
-            return -1;
+            if (Mathf.Approximately(mesh.material.color.a, end)) return 1;
+            else return 0;
+        }
+        else if (!useMesh && image != null)
+        {
+            if (Mathf.Approximately(image.color.a, end)) return 1;
+            else return 0;
         }
 
-        return (int)mesh.material.color.a;
+        Debug.LogWarning("対象のコンポーネントが見つかりません");
+        return -1f;
     }
 }
