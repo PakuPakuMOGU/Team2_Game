@@ -2420,6 +2420,7 @@ GameObject:
   - component: {fileID: 672434729}
   - component: {fileID: 672434728}
   - component: {fileID: 672434727}
+  - component: {fileID: 672434733}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -2442,6 +2443,7 @@ MonoBehaviour:
   speed: 15
   jumpForce: 10
   Check: {fileID: 0}
+  cameraTransform: {fileID: 0}
 --- !u!54 &672434728
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2552,9 +2554,26 @@ Transform:
   m_LocalPosition: {x: 557.23, y: 13.5, z: -728.2}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 963194228}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &672434733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 672434723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c81b6f5641f8eea4ab6f4edeeef66a73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  jumpForce: 5
+  Check: {fileID: 0}
+  cameraTransform: {fileID: 963194228}
 --- !u!1001 &684667387
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3694,12 +3713,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -185.74333, y: -4.166667, z: 239.40001}
+  m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 672434732}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &963194229
 MonoBehaviour:
@@ -3710,16 +3729,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d02eb8ef69b63a84488bbbbecf63387d, type: 3}
+  m_Script: {fileID: 11500000, guid: 64e936c0da70925418e7d37d56b7c8bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 672434732}
-  distance: 5
-  height: 2
+  distance: 6
+  height: 3
   mouseSensitivity: 3
   minYAngle: -20
   maxYAngle: 80
-  followSpeed: 5
+  followSpeed: 10
 --- !u!1 &977366941
 GameObject:
   m_ObjectHideFlags: 0
@@ -7202,7 +7221,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 705507995}
   - {fileID: 2047109789}
-  - {fileID: 963194228}
   - {fileID: 2028029072}
   - {fileID: 239559643}
   - {fileID: 829868362}
