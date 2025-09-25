@@ -5,14 +5,13 @@ using UnityEngine;
 
 public class FadeInOut : MonoBehaviour
 {
-    public Fade fadeScript;
-    public GameObject camera;
-    public GameObject FadeCube;
+    private Fade fadeScript;
+    public GameObject FadePanel;
 
     void Start()
     {
-        FadeCube.SetActive(false);
-        fadeScript = FadeCube.GetComponent<Fade>();
+        FadePanel.SetActive(false);
+        fadeScript = FadePanel.GetComponent<Fade>();
         if (fadeScript == null)
         {
             Debug.LogWarning("FadeCube に Fade スクリプトがアタッチされていません");
@@ -22,21 +21,17 @@ public class FadeInOut : MonoBehaviour
 
     public void StartFade()
     {
-        FadeCube.SetActive(true);
-        FadeCube.transform.position = camera.transform.position + camera.transform.forward * 0.5f;
-        FadeCube.transform.rotation = camera.transform.rotation;
+        FadePanel.SetActive(true);
         StartCoroutine(WaitUntilFadeComplete());
     }
 
     private IEnumerator WaitUntilFadeComplete()
-    {
+    {       
+        fadeScript = FadePanel.GetComponent<Fade>();
         yield return null;
-        fadeScript = FadeCube.GetComponent<Fade>();
 
-        while (fadeScript.colorNow() != 1)
+        while (fadeScript.GetCurrentAlpha() != 1)
         {
-            FadeCube.transform.position = camera.transform.position + camera.transform.forward * 0.5f;
-            FadeCube.transform.rotation = camera.transform.rotation;
             yield return null;
         }
 

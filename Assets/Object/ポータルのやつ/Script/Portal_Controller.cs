@@ -15,7 +15,7 @@ public class Portal_Controller : MonoBehaviour
     [SerializeField] private ParticleSystem[] effectsParticles;
     [SerializeField] private Light portalLight;
 
-    private float maxVolOrb = 0.08f, maxVolportal = 0.8f, maxIntPortalLight = 4;
+    private float maxIntPortalLight = 4;
     private float transitionSpeed = 0.3f;
 
     //assigned when Awake
