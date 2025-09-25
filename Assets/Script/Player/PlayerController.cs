@@ -11,11 +11,12 @@ public class PlayerController : MonoBehaviour
     [Header("チェックポイントスクリプト")]
     public CheckPoint Check;
 
-    private bool jumpRequested = false;
-    private bool isGrounded = false;
-
     [Header("カメラのTransform")]
     public Transform cameraTransform;
+
+    private bool jumpRequested = false;
+    private bool isGrounded = false;
+    private int jumpCount = 0; // ジャンプ回数を管理
 
     private void Awake()
     {
@@ -25,7 +26,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        // ジャンプが1回以内ならジャンプ可能
+        if (Input.GetButtonDown("Jump") && jumpCount < 2)
         {
             jumpRequested = true;
         }
@@ -36,10 +38,8 @@ public class PlayerController : MonoBehaviour
         float moveX = Input.GetAxis("Horizontal");
         float moveZ = Input.GetAxis("Vertical");
 
-        // 入力ベクトル
         Vector3 input = new Vector3(moveX, 0f, moveZ).normalized;
 
-        // カメラの向きから前方向と右方向を取得（Y軸だけの向きにする）
         Vector3 camForward = cameraTransform.forward;
         Vector3 camRight = cameraTransform.right;
 
@@ -48,7 +48,6 @@ public class PlayerController : MonoBehaviour
         camForward.Normalize();
         camRight.Normalize();
 
-        // 入力をカメラ基準で変換（カメラの正面がプレイヤーの前になる）
         Vector3 move = camForward * input.z + camRight * input.x;
 
         Vector3 velocity = move * speed;
@@ -56,9 +55,10 @@ public class PlayerController : MonoBehaviour
 
         rb.velocity = velocity;
 
-        if (jumpRequested && isGrounded)
+        if (jumpRequested)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+            jumpCount++; // ジャンプ回数を加算
             isGrounded = false;
             jumpRequested = false;
         }
@@ -77,9 +77,11 @@ public class PlayerController : MonoBehaviour
             if (Vector3.Dot(contact.normal, Vector3.up) > 0.5f)
             {
                 isGrounded = true;
+                jumpCount = 0; // 地面に着いたらジャンプ回数リセット
                 return;
             }
         }
+
         isGrounded = false;
     }
 
