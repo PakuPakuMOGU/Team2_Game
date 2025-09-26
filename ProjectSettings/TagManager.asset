@@ -8,6 +8,7 @@ TagManager:
   - Chack2
   - Chack3
   - Start
+  - Gate
   layers:
   - Default
   - TransparentFX
