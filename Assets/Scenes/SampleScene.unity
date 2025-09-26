@@ -2797,8 +2797,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c81b6f5641f8eea4ab6f4edeeef66a73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
-  jumpForce: 15
+  speed: 20
+  jumpForce: 20
   Check: {fileID: 0}
   cameraTransform: {fileID: 963194228}
 --- !u!1001 &684667387
