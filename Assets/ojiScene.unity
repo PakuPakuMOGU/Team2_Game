@@ -7961,6 +7961,10 @@ PrefabInstance:
       value: water
       objectReference: {fileID: 0}
     - target: {fileID: 5025304730043320509, guid: b5c620aa25c0e7440b53d19fbacdfc2b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5025304730043320509, guid: b5c620aa25c0e7440b53d19fbacdfc2b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
