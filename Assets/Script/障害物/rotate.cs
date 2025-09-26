@@ -54,6 +54,7 @@ public class rotate : MonoBehaviour
 
     void FixedUpdate()
     {
+        Debug.Log(v3Position);
         if (updownSet.yes) updownSet.script.GivePositionY();                     // ã‰º‚É“®‚­ê‡Y‚ğ”½‰f‚³‚¹‚é.
         if (randomSpeedSet.yes)
         {
