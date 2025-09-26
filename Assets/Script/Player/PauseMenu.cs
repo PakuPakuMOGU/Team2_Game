@@ -5,16 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+    [Header("UI設定")]
     public Image pauseBack;             // 背景パネル
     public TextMeshProUGUI pauseTxt;    // ポーズ用テキスト
     public Button quitButton;           // Quit ボタン
     public Button optionButton;         // Option ボタン
 
+    [Header("効果音設定")]
+    public AudioSource audioSource;     // 効果音再生用
+    public AudioClip quitSE;            // Quit ボタン用SE
+    public AudioClip optionSE;          // Option ボタン用SE
+    public AudioClip resumeSE;          // 再開用SE
+    public AudioClip pauseSE;           // ポーズON用SE
+
     private bool isPaused = false;
 
     void Start()
     {
-        // 初期状態は透明に
+        // 最初はポーズUIを非表示
         SetPauseUI(false);
     }
 
@@ -25,84 +33,48 @@ public class PauseMenu : MonoBehaviour
         {
             isPaused = !isPaused;
             SetPauseUI(isPaused);
-            Time.timeScale = isPaused ? 0f : 1f;  // ポーズ中はゲーム停止
+            Time.timeScale = isPaused ? 0f : 1f;
+
+            // ポーズ/再開のSE再生
+            if (isPaused) PlaySE(pauseSE);
+            else PlaySE(resumeSE);
         }
 
-        // ポーズ中に Esc で終了
+        // Escで終了（ポーズ中のみ）
         if (isPaused && Input.GetKeyDown(KeyCode.Escape))
         {
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
+            QuitGame();
         }
     }
 
     private void SetPauseUI(bool active)
     {
-        // 背景は半透明
-        if (pauseBack != null)
-            SetAlpha(pauseBack, active ? 0.5f : 0f);
+        // 背景とテキストの透明度
+        if (pauseBack != null) pauseBack.gameObject.SetActive(active);
+        if (pauseTxt != null) pauseTxt.gameObject.SetActive(active);
 
-        // テキストは完全不透明
-        if (pauseTxt != null)
-            SetAlpha(pauseTxt, active ? 1f : 0f);
+        // ボタンはポーズ時のみ表示
+        if (quitButton != null) quitButton.gameObject.SetActive(active);
+        if (optionButton != null) optionButton.gameObject.SetActive(active);
 
-        // ボタンも透明度で管理
-        if (quitButton != null)
-            SetButtonAlpha(quitButton, active ? 1f : 0f);
-        if (optionButton != null)
-            SetButtonAlpha(optionButton, active ? 1f : 0f);
-
-        // ★ カーソル制御を追加
-        if (active)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
+        // カーソル表示切替
+        Cursor.lockState = active ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = active;
     }
 
-    // Graphic の透明度を変更
-    private void SetAlpha(Graphic g, float alpha)
+    // 共通SE再生
+    private void PlaySE(AudioClip clip)
     {
-        if (g != null)
-        {
-            Color c = g.color;
-            c.a = alpha;
-            g.color = c;
-        }
+        if (audioSource != null && clip != null)
+            audioSource.PlayOneShot(clip);
     }
 
-    // Button 内の Image と TextMeshProUGUI をまとめて透明度変更
-    private void SetButtonAlpha(Button button, float alpha)
-    {
-        if (button == null) return;
-
-        // ボタン背景 Image
-        Image img = button.GetComponent<Image>();
-        if (img != null)
-            SetAlpha(img, alpha);
-
-        // ボタンのテキスト
-        TextMeshProUGUI txt = button.GetComponentInChildren<TextMeshProUGUI>();
-        if (txt != null)
-            SetAlpha(txt, alpha);
-
-        // ボタン自体の interactable は alpha に応じて切替
-        button.interactable = alpha > 0f;
-    }
-
-    // ボタン用メソッド
+    // Quitボタン
     public void QuitGame()
     {
+        PlaySE(quitSE);
         Time.timeScale = 1f;
-        Cursor.lockState = CursorLockMode.None; 
+        Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
 #if UNITY_EDITOR
@@ -112,8 +84,10 @@ public class PauseMenu : MonoBehaviour
 #endif
     }
 
+    // Optionボタン
     public void OpenOption()
     {
+        PlaySE(optionSE);
         Debug.Log("Option画面を開く処理をここに追加");
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
