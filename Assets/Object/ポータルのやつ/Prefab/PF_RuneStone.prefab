@@ -15138,7 +15138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85dd09458a73c0e4ebde37034f2b1fb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectsColor: {r: 0.24999997, g: 0.5029412, b: 1, a: 1}
+  effectsColor: {r: 0.21568628, g: 1, b: 1, a: 1}
   runeStoneRenderer: {fileID: 1339023582268647032}
   rocksBaseTF: {fileID: 6075849157881363410}
   effectsParticles:
