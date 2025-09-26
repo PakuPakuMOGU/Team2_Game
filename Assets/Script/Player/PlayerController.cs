@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour
     [Header("チェックポイントスクリプト")]
     public CheckPoint Check;
 
+    [Header("ゲートスクリプト")]
+    public Gate Gate;
+
     [Header("カメラのTransform")]
     public Transform cameraTransform;
 
@@ -81,6 +84,7 @@ public class PlayerController : MonoBehaviour
     {
         string tag = collider.gameObject.tag;
         Check.TagCheck(tag);
+        Gate.TagCheck(tag);
     }
 
     // 地面に接触している間の処理（地面判定）

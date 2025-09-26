@@ -2252,6 +2252,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF_PortalGate_Simple
       objectReference: {fileID: 0}
+    - target: {fileID: 539152524218077282, guid: 44f3316891d2f8c4192fee963496804d, type: 3}
+      propertyPath: m_TagString
+      value: Gate
+      objectReference: {fileID: 0}
     - target: {fileID: 1197014444433241998, guid: 44f3316891d2f8c4192fee963496804d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.32
@@ -2378,6 +2382,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 539152524218077282, guid: 44f3316891d2f8c4192fee963496804d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1573039114}
+    - targetCorrespondingSourceObject: {fileID: 539152524218077282, guid: 44f3316891d2f8c4192fee963496804d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1573039116}
     - targetCorrespondingSourceObject: {fileID: 6923693691316303551, guid: 44f3316891d2f8c4192fee963496804d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 122444825}
@@ -2411,6 +2418,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   portal: {fileID: 1573039112}
+--- !u!65 &1573039116
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1573039111}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5, y: 4, z: 4}
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!1 &1627314366
 GameObject:
   m_ObjectHideFlags: 0
@@ -7830,6 +7858,7 @@ MonoBehaviour:
   dashSpeed: 10
   jumpForce: 5
   Check: {fileID: 840434649}
+  Gate: {fileID: 1573039114}
   cameraTransform: {fileID: 1002283903}
 --- !u!114 &2003621536
 MonoBehaviour:
