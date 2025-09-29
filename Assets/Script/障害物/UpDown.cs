@@ -22,10 +22,6 @@ public class UpDown : MonoBehaviour
     [SerializeField]
     private bool rotate = false;
 
-    [Header("色を変えるスクリプト")]
-    [SerializeField]
-    public ColorChange ColorChange;
-
     [Header("座標管理スクリプト")]
     [SerializeField]
     public positionDate position;
@@ -41,11 +37,8 @@ public class UpDown : MonoBehaviour
 
     void Start()
     {
-        if (randomSettings.yes)
-        {
-            randomSettings.script.RanPosition();
-        }
-        v3BasePosition = randomSettings.yes || position.Posi.yes ? position.BasePosition() : transform.position;
+        if (randomSettings.yes) randomSettings.script.RanPosition();    // ランダムポジション.
+        v3BasePosition = randomSettings.yes || position.Posi.yes ? position.ReturnPosition("Base") : transform.position;
         v3Position = v3BasePosition;                    // 位置を初期化.
         v3Velocity = v3BaseVelocity;                    // 速度を初期化.
         transform.position = v3Position;
@@ -56,7 +49,7 @@ public class UpDown : MonoBehaviour
         v3Position += v3Velocity;       // 位置に速度を足す.
         v3Velocity.y += fGravity;       // 速度に加速度を足す.
 
-        if ((fGravity > 0.0f && v3Position.y > finishposition) ||
+        if ((fGravity >  0.0f && v3Position.y > finishposition) ||
             (fGravity <= 0.0f && v3Position.y < finishposition))
                 Destroy(gameObject);     // y軸が規定値を上/下回ったらオブジェクト消去.
 

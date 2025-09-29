@@ -45,7 +45,7 @@ public class rotate : MonoBehaviour
 
     void Start()
     {
-        v3Position = position.Posi.yes ? position.BasePosition() : transform.position;  // ‰ñ“]²İ’è.
+        v3Position = position.Posi.yes ? position.ReturnPosition("Base") : transform.position;  // ‰ñ“]²İ’è.
         fAngle_Vel = StartAngle * (speed * Mathf.PI / 50.0f);     // ‰ŠúŠp“x‚ğg‚Á‚ÄÅ‰‚ÌˆÊ’u‚ğİ’è.
     }
 
@@ -60,7 +60,7 @@ public class rotate : MonoBehaviour
 
         fAngle_Vel += speed * Mathf.PI / 50.0f;
 
-        Vector3 basePos = position.BasePosition(); // ‰ñ“]‚Ì’†S‚ğæ“¾
+        Vector3 basePos = position.ReturnPosition("Base"); // ‰ñ“]‚Ì’†S‚ğæ“¾
         float y = position.NowPositionOne('y');    // YÀ•W‚Í•Ê“ræ“¾
 
         v3Position = new Vector3(

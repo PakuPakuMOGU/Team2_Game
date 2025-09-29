@@ -8,7 +8,6 @@ public class Gate : MonoBehaviour
 
     public void TagCheck(string tag)
     {
-
         if (tag == "Gate")
         {
             GameObject obj = GameObject.FindWithTag(tag);
@@ -23,6 +22,5 @@ public class Gate : MonoBehaviour
             }
             else Debug.Log("ƒ^ƒO F" + tag + "‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ");
         }
-
     } 
 }
