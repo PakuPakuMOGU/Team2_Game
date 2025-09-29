@@ -54,16 +54,23 @@ public class rotate : MonoBehaviour
 
     void FixedUpdate()
     {
-        Debug.Log(v3Position);
-        if (updownSet.yes) updownSet.script.GivePositionY();                     // 上下に動く場合Yを反映させる.
+        if (updownSet.yes) updownSet.script.GivePositionY();
         if (randomSpeedSet.yes)
         {
-            speed = Random.Range(randomSpeedSet.min, randomSpeedSet.max);             // ランダム速度を使う場合ランダム計算.
+            speed = Random.Range(randomSpeedSet.min, randomSpeedSet.max);
             speed += (float)((Random.Range(0, 8) / 10) + 0.1);
         }
 
         fAngle_Vel += speed * Mathf.PI / 50.0f;
-        v3Position = new Vector3(fRot_r * Mathf.Cos(fAngle_Vel), position.NowPositionOne('y'), fRot_r * Mathf.Sin(fAngle_Vel)); // 位置の計算.
+
+        Vector3 basePos = position.BasePosition(); // 回転の中心を取得
+        float y = position.NowPositionOne('y');    // Y座標は別途取得
+
+        v3Position = new Vector3(
+            basePos.x + fRot_r * Mathf.Cos(fAngle_Vel),
+            y,
+            basePos.z + fRot_r * Mathf.Sin(fAngle_Vel)
+        );
 
         transform.position = v3Position;
     }
