@@ -23,8 +23,7 @@ public class positionDate : MonoBehaviour
     // ç¿ïWÇïœçXÇ∑ÇÈ.
     public void BasePositionChange(float x, float y, float z)
     {
-        v3BasePosition = new Vector3(x, y, z);
-        transform.position = v3BasePosition;
+        transform.position = v3BasePosition = new Vector3(x, y, z);
     }
 
     public Vector3 ReturnPosition(string str)
