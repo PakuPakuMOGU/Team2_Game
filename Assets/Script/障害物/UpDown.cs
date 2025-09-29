@@ -43,7 +43,7 @@ public class UpDown : MonoBehaviour
     void Start()
     {
         if (randomSettings.yes) randomSettings.script.RanPosition();
-        v3BasePosition = position.BasePosition();
+        v3BasePosition = transform.position;
         v3Position = v3BasePosition;                    // ˆÊ’u‚ğ‰Šú‰».
         v3Velocity = v3BaseVelocity;                    // ‘¬“x‚ğ‰Šú‰».
         transform.position = v3Position;
