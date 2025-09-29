@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class positionDate : MonoBehaviour
 {
-    [Header("‰ŠúÀ•W")]
-    [SerializeField]
     private Vector3 v3BasePosition;
-
     private Vector3 v3NowPosition;
+
+    void Start()
+    {
+        v3BasePosition = transform.position;
+    }
 
     void UpDate()
     {
