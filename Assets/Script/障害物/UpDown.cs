@@ -15,7 +15,6 @@ public class UpDown : MonoBehaviour
         public bool yes = false;
         public RandomPosition script;
     }
-
     [Header("ランダム座標設定する？")]
     [SerializeField] private RandomSettings randomSettings;
 
@@ -42,8 +41,11 @@ public class UpDown : MonoBehaviour
 
     void Start()
     {
-        if (randomSettings.yes) randomSettings.script.RanPosition();
-        v3BasePosition = transform.position;
+        if (randomSettings.yes)
+        {
+            randomSettings.script.RanPosition();
+        }
+        v3BasePosition = randomSettings.yes ? position.BasePosition() : transform.position;
         v3Position = v3BasePosition;                    // 位置を初期化.
         v3Velocity = v3BaseVelocity;                    // 速度を初期化.
         transform.position = v3Position;

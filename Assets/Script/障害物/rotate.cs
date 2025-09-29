@@ -45,7 +45,7 @@ public class rotate : MonoBehaviour
 
     void Start()
     {
-        v3Position = transform.position;
+        v3Position = position.Posi.yes ? position.BasePosition() : transform.position;  // ‰ñ“]²İ’è.
         fAngle_Vel = StartAngle * (speed * Mathf.PI / 50.0f);     // ‰ŠúŠp“x‚ğg‚Á‚ÄÅ‰‚ÌˆÊ’u‚ğİ’è.
     }
 

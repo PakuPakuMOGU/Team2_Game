@@ -4,13 +4,30 @@ using UnityEngine;
 
 public class positionDate : MonoBehaviour
 {
+    [System.Serializable]
+    public class Position
+    {
+        public bool yes = false;
+        public Vector3 position;
+    }
+    [Header("スクリプトで座標を設定する？")]
+    public Position Posi;
+
     private Vector3 v3BasePosition;
     private Vector3 v3NowPosition;
 
     void Start()
     {
-        v3BasePosition = transform.position;
-        v3NowPosition = transform.position;
+        if (Posi.yes)
+        {
+            v3BasePosition = Posi.position;
+            v3NowPosition = Posi.position;
+        }
+        else
+        {
+            v3BasePosition = transform.position;
+            v3NowPosition = transform.position;
+        }
     }
 
     void UpDate()

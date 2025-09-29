@@ -1752,6 +1752,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd5834bb90606f64e8b4ce1098b603e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Posi:
+    yes: 0
+    position: {x: 0, y: 0, z: 0}
 --- !u!114 &1128299750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1829,6 +1832,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd5834bb90606f64e8b4ce1098b603e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Posi:
+    yes: 0
+    position: {x: 0, y: 0, z: 0}
 --- !u!114 &1198238968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2563,6 +2569,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd5834bb90606f64e8b4ce1098b603e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Posi:
+    yes: 0
+    position: {x: 0, y: 0, z: 0}
 --- !u!114 &1504412110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3047,6 +3056,7 @@ GameObject:
   - component: {fileID: 1821671477}
   - component: {fileID: 1821671476}
   - component: {fileID: 1821671475}
+  - component: {fileID: 1821671479}
   - component: {fileID: 1821671474}
   - component: {fileID: 1821671473}
   m_Layer: 0
@@ -3083,6 +3093,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd5834bb90606f64e8b4ce1098b603e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Posi:
+    yes: 0
+    position: {x: 0, y: 0, z: 0}
 --- !u!114 &1821671474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3096,8 +3109,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomSettings:
-    yes: 0
-    script: {fileID: 0}
+    yes: 1
+    script: {fileID: 1821671479}
   rotate: 1
   ColorChange: {fileID: 0}
   position: {fileID: 1821671473}
@@ -3197,6 +3210,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1821671471}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1821671479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821671471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90c82235db200c5419b80a8e07b1610d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  position: {fileID: 1821671473}
+  max: {x: -20, y: 0, z: -20}
+  min: {x: 20, y: 0, z: 20}
 --- !u!1001 &1866480510
 PrefabInstance:
   m_ObjectHideFlags: 0

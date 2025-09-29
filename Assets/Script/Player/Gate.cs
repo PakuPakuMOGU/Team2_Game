@@ -6,11 +6,6 @@ public class Gate : MonoBehaviour
 {
     public Portal_Controller portal;
 
-    void Start()
-    {
-        
-    }
-
     public void TagCheck(string tag)
     {
 
