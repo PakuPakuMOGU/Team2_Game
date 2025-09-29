@@ -17,6 +17,8 @@ public class Runestone_Controller : MonoBehaviour
     [SerializeField] private Transform[] runes = new Transform[2];
     [SerializeField] private AnimationCurve rockAnimCurve;
 
+    public AudioSource sound;
+
     private float maxIntPortalLight = 2;
     private float transitionSpeed = 0.5f;
 
@@ -45,7 +47,7 @@ public class Runestone_Controller : MonoBehaviour
         if (_activate)//toggle on
         {
             activated = true;
-
+            sound.Play();
             transitionCor = StartCoroutine(TransitionSequence());
 
             for (int i = 0; i < 2; i++)
