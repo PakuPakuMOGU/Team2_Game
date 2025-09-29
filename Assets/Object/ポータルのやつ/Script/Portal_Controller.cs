@@ -15,6 +15,8 @@ public class Portal_Controller : MonoBehaviour
     [SerializeField] private ParticleSystem[] effectsParticles;
     [SerializeField] private Light portalLight;
 
+    public AudioSource sound;
+
     private float maxIntPortalLight = 4;
     private float transitionSpeed = 0.3f;
 
@@ -39,7 +41,7 @@ public class Portal_Controller : MonoBehaviour
         if (_activate)//toggle on
         {
             activated = true;
-
+            sound.Play();
             transitionCor = StartCoroutine(PreActivate());
         }
         else if (!_activate)//toggle off
