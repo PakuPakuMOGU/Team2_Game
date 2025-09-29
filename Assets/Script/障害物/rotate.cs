@@ -61,7 +61,7 @@ public class rotate : MonoBehaviour
         fAngle_Vel += speed * Mathf.PI / 50.0f;
 
         Vector3 basePos = position.BasePosition(); // ‰ñ“]‚Ì’†S‚ğæ“¾
-        float y = v3Position.y;    // YÀ•W‚Í•Ê“ræ“¾
+        float y = position.NowPositionOne('y');    // YÀ•W‚Í•Ê“ræ“¾
 
         v3Position = new Vector3(
             basePos.x + fRot_r * Mathf.Cos(fAngle_Vel),

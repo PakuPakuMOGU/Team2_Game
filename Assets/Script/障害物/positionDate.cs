@@ -10,6 +10,7 @@ public class positionDate : MonoBehaviour
     void Start()
     {
         v3BasePosition = transform.position;
+        v3NowPosition = transform.position;
     }
 
     void UpDate()
