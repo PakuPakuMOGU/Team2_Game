@@ -10,6 +10,8 @@ public class ButtonTile : MonoBehaviour
     [Header("動かしたいスクリプトが入ってるゲームオブジェクト")]
     public List<GameObject> runObject = new List<GameObject> ();
 
+    public AudioSource sound;
+
     private bool buttonOK = false;
 
     void Start()
@@ -25,6 +27,7 @@ public class ButtonTile : MonoBehaviour
     {
         Vector3 buttonPosition = transform.position;
         buttonPosition.y -= minusY;
+        sound.Play();
         transform.position = buttonPosition;
         int listCount = runObject.Count;
         for (int i = 0; i < listCount; i++)
