@@ -45,7 +45,7 @@ public class UpDown : MonoBehaviour
         {
             randomSettings.script.RanPosition();
         }
-        v3BasePosition = randomSettings.yes ? position.BasePosition() : transform.position;
+        v3BasePosition = randomSettings.yes || position.Posi.yes ? position.BasePosition() : transform.position;
         v3Position = v3BasePosition;                    // ˆÊ’u‚ğ‰Šú‰».
         v3Velocity = v3BaseVelocity;                    // ‘¬“x‚ğ‰Šú‰».
         transform.position = v3Position;

@@ -1833,8 +1833,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Posi:
-    yes: 0
-    position: {x: 0, y: 0, z: 0}
+    yes: 1
+    position: {x: -10, y: 0, z: -10}
 --- !u!114 &1198238968
 MonoBehaviour:
   m_ObjectHideFlags: 0
