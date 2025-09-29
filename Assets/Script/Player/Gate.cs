@@ -6,14 +6,8 @@ public class Gate : MonoBehaviour
 {
     public Portal_Controller portal;
 
-    void Start()
-    {
-        
-    }
-
     public void TagCheck(string tag)
     {
-
         if (tag == "Gate")
         {
             GameObject obj = GameObject.FindWithTag(tag);
@@ -28,6 +22,5 @@ public class Gate : MonoBehaviour
             }
             else Debug.Log("É^ÉO ÅF" + tag + "Ç™å©Ç¬Ç©ÇËÇ‹ÇπÇÒ");
         }
-
     } 
 }

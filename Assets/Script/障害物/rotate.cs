@@ -45,7 +45,7 @@ public class rotate : MonoBehaviour
 
     void Start()
     {
-        v3Position = transform.position;
+        v3Position = position.Posi.yes ? position.ReturnPosition("Base") : transform.position;  // 回転軸設定.
         fAngle_Vel = StartAngle * (speed * Mathf.PI / 50.0f);     // 初期角度を使って最初の位置を設定.
     }
 
@@ -60,7 +60,7 @@ public class rotate : MonoBehaviour
 
         fAngle_Vel += speed * Mathf.PI / 50.0f;
 
-        Vector3 basePos = position.BasePosition(); // 回転の中心を取得
+        Vector3 basePos = position.ReturnPosition("Base"); // 回転の中心を取得
         float y = position.NowPositionOne('y');    // Y座標は別途取得
 
         v3Position = new Vector3(

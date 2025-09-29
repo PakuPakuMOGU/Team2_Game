@@ -27,11 +27,6 @@ public class CheckPoint : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-         //Debug.Log(playerPosition);
-    }
-
     public void TagCheck(string tag)
     {
         int listCount = listTag.Count;
@@ -53,5 +48,10 @@ public class CheckPoint : MonoBehaviour
                 else Debug.Log("É^ÉO ÅF" + tag + "Ç™å©Ç¬Ç©ÇËÇ‹ÇπÇÒ");
             }
         }
+    }
+
+    public Vector3 ReturnChackPoint()
+    {
+        return playerPosition;
     }
 }
