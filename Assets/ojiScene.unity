@@ -210,7 +210,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5064046406931840045, guid: 7573003ec7d73c147b9ed14640735a39, type: 3}
       propertyPath: m_Name
-      value: PF_RuneStone (2)
+      value: CheckPoint (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5064046406931840045, guid: 7573003ec7d73c147b9ed14640735a39, type: 3}
+      propertyPath: m_TagString
+      value: Check3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1136,7 +1140,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5064046406931840045, guid: 7573003ec7d73c147b9ed14640735a39, type: 3}
       propertyPath: m_Name
-      value: PF_RuneStone (1)
+      value: CheckPoint (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5064046406931840045, guid: 7573003ec7d73c147b9ed14640735a39, type: 3}
+      propertyPath: m_TagString
+      value: Check2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1472,10 +1480,9 @@ MonoBehaviour:
   - {fileID: 1314838334}
   - {fileID: 166293660}
   listTag:
-  - Chack1
-  - Chack2
-  - Chack3
-  CheckPointPrefab: {fileID: 5064046406931840045, guid: 7573003ec7d73c147b9ed14640735a39, type: 3}
+  - Check1
+  - Check2
+  - Check3
 --- !u!4 &840434650
 Transform:
   m_ObjectHideFlags: 0
@@ -3279,7 +3286,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5064046406931840045, guid: 7573003ec7d73c147b9ed14640735a39, type: 3}
       propertyPath: m_Name
-      value: PF_RuneStone
+      value: CheckPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 5064046406931840045, guid: 7573003ec7d73c147b9ed14640735a39, type: 3}
+      propertyPath: m_TagString
+      value: Check1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
