@@ -16,8 +16,7 @@ public class ButtonTile : MonoBehaviour
 
     void Start()
     {
-        int listCount = runObject.Count;
-        for (int i = 0; i < listCount; i++)
+        for (int i = 0; i < runObject.Count; i++)
         {
             runObject[i].SetActive (false);
         }
@@ -29,8 +28,7 @@ public class ButtonTile : MonoBehaviour
         buttonPosition.y -= minusY;
         sound.Play();
         transform.position = buttonPosition;
-        int listCount = runObject.Count;
-        for (int i = 0; i < listCount; i++)
+        for (int i = 0; i < runObject.Count; i++)
         {
             runObject[i].SetActive(true);
         }
@@ -43,6 +41,10 @@ public class ButtonTile : MonoBehaviour
         buttonPosition.y += minusY;
         sound.Play();
         transform.position = buttonPosition;
+        for (int i = 0; i < runObject.Count; i++)
+        {
+            runObject[i].SetActive(false);
+        }
     }
 
     void OnCollisionEnter(Collision collision)
