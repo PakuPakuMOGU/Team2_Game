@@ -5,25 +5,23 @@ using UnityEngine;
 public class CheckPoint : MonoBehaviour
 {
     [Header("チェックポイント設定")]
-    public List<Vector3> listPosition = new List<Vector3>();
-    public List<Vector3> listSize     = new List<Vector3>();
-    public List<string>  listTag      = new List<string>();
-    public GameObject CheckPointPrefab;
+    public List<GameObject> checkPoint = new List<GameObject>();
+    public List<string> listTag = new List<string>();
 
     private Vector3 playerPosition;
 
     void Start()
     {
-        int listCount = listPosition.Count;
-        if (listCount > 0) playerPosition = listPosition[0];
+        // 初期化.
+        int listCount = checkPoint.Count;
+        if (listCount > 0)
+        {
+            playerPosition = checkPoint[0].transform.position;
+        }
+
         for (int i = 0; i < listCount; i++)
         {
-            Vector3 pos = listPosition[i];
-            Vector3 siz = new Vector3(1.0f, 1.0f, 1.0f);
-            if (listSize[i] != null) siz = listSize[i];                 
-            Instantiate(CheckPointPrefab, pos, Quaternion.identity);
-            CheckPointPrefab.transform.localScale = siz;
-            CheckPointPrefab.gameObject.tag = listTag[i];
+            checkPoint[i].tag = listTag[i];
         }
     }
 
@@ -34,23 +32,30 @@ public class CheckPoint : MonoBehaviour
         {
             if (tag == listTag[i])
             {
-                playerPosition = listPosition[i];
+                playerPosition = checkPoint[i].transform.position;
                 GameObject obj = GameObject.FindWithTag(tag);
                 if (obj != null)
                 {
                     Runestone_Controller rune = obj.GetComponent<Runestone_Controller>();
                     if (rune != null)
                     {
-                        rune.ToggleRuneStone(true);              
+                        rune.ToggleRuneStone(true);
                     }
-                    else Debug.Log("Runestone_Controllerが見つかりません");
+                    else
+                    {
+                        Debug.Log("Runestone_Controllerが見つかりません");
+                    }
                 }
-                else Debug.Log("タグ ：" + tag + "が見つかりません");
+                else
+                {
+                    Debug.Log("タグ：" + tag + " が見つかりません");
+                }
             }
         }
     }
 
-    public Vector3 ReturnChackPoint()
+    // プレイヤーのチェックポイント地点を返す関数.
+    public Vector3 ReturnCheckPoint()
     {
         return playerPosition;
     }
