@@ -15104,7 +15104,7 @@ GameObject:
   - component: {fileID: 461741999790475453}
   - component: {fileID: -661513913386701819}
   m_Layer: 0
-  m_Name: PF_RuneStone
+  m_Name: CheckPoint
   m_TagString: Chack3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
