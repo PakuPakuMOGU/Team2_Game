@@ -12,7 +12,7 @@ public class ButtonTile : MonoBehaviour
 
     public AudioSource sound;
 
-    private bool buttonOK = false;
+    public bool buttonOK = false;
 
     void Start()
     {
@@ -34,6 +34,15 @@ public class ButtonTile : MonoBehaviour
         {
             runObject[i].SetActive(true);
         }
+    }
+
+    public void ButtonOff()
+    {
+        buttonOK = false;
+        Vector3 buttonPosition = transform.position;
+        buttonPosition.y += minusY;
+        sound.Play();
+        transform.position = buttonPosition;
     }
 
     void OnCollisionEnter(Collision collision)
