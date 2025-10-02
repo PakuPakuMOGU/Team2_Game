@@ -12,12 +12,11 @@ public class ButtonTile : MonoBehaviour
 
     public AudioSource sound;
 
-    private bool buttonOK = false;
+    public bool buttonOK = false;
 
     void Start()
     {
-        int listCount = runObject.Count;
-        for (int i = 0; i < listCount; i++)
+        for (int i = 0; i < runObject.Count; i++)
         {
             runObject[i].SetActive (false);
         }
@@ -29,10 +28,22 @@ public class ButtonTile : MonoBehaviour
         buttonPosition.y -= minusY;
         sound.Play();
         transform.position = buttonPosition;
-        int listCount = runObject.Count;
-        for (int i = 0; i < listCount; i++)
+        for (int i = 0; i < runObject.Count; i++)
         {
             runObject[i].SetActive(true);
+        }
+    }
+
+    public void ButtonOff()
+    {
+        buttonOK = false;
+        Vector3 buttonPosition = transform.position;
+        buttonPosition.y += minusY;
+        sound.Play();
+        transform.position = buttonPosition;
+        for (int i = 0; i < runObject.Count; i++)
+        {
+            runObject[i].SetActive(false);
         }
     }
 
