@@ -12,38 +12,41 @@ public class ButtonTile : MonoBehaviour
 
     public AudioSource sound;
 
-    public bool buttonOK = false;
+    public bool buttonOK;
 
     void Start()
     {
-        for (int i = 0; i < runObject.Count; i++)
-        {
-            runObject[i].SetActive (false);
-        }
+        buttonOK = false;
+        ButtonActive();
     }
 
     private void ButtonOn()
     {
-        Vector3 buttonPosition = transform.position;
-        buttonPosition.y -= minusY;
-        sound.Play();
-        transform.position = buttonPosition;
-        for (int i = 0; i < runObject.Count; i++)
-        {
-            runObject[i].SetActive(true);
-        }
+        buttonOK = true;
+        ButtonSet();
     }
 
     public void ButtonOff()
     {
         buttonOK = false;
+        ButtonSet();   
+    }
+
+    private void ButtonSet()
+    {
         Vector3 buttonPosition = transform.position;
-        buttonPosition.y += minusY;
+        if(buttonOK) buttonPosition.y -= minusY;
+        else         buttonPosition.y += minusY;
         sound.Play();
         transform.position = buttonPosition;
+        ButtonActive();
+    }
+
+    private void ButtonActive()
+    {
         for (int i = 0; i < runObject.Count; i++)
         {
-            runObject[i].SetActive(false);
+            runObject[i].SetActive(buttonOK);
         }
     }
 
@@ -51,7 +54,6 @@ public class ButtonTile : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && !buttonOK)
         {
-            buttonOK = true;
             ButtonOn();
         }
     }
