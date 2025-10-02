@@ -4,11 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Chack1
-  - Chack2
-  - Chack3
   - Start
   - Gate
+  - Check1
+  - Check2
+  - Check3
   layers:
   - Default
   - TransparentFX
