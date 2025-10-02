@@ -1380,6 +1380,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FadePanel: {fileID: 607302151}
+--- !u!1 &755483765 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2638957108020833626, guid: 3339f935e114340498fbab34c188af75, type: 3}
+  m_PrefabInstance: {fileID: 1866480510}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &755483768 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2652168879635119632, guid: 3339f935e114340498fbab34c188af75, type: 3}
+  m_PrefabInstance: {fileID: 1866480510}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755483765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73a8eb4cd79fa2143a8b765ee1f831d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &755483772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755483765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 782d253a9cf250c42ac3a698498eff5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonTile: {fileID: 755483768}
+  num: 1
 --- !u!1001 &801012669
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1475,7 +1505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d856fb4234f56864b9d96cec808c3715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkPoint:
+  checkPoints:
   - {fileID: 339402648}
   - {fileID: 1314838334}
   - {fileID: 166293660}
@@ -3542,7 +3572,10 @@ PrefabInstance:
     - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2638957108020833626, guid: 3339f935e114340498fbab34c188af75, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 755483772}
   m_SourcePrefab: {fileID: 100100000, guid: 3339f935e114340498fbab34c188af75, type: 3}
 --- !u!1 &1877598537
 GameObject:
