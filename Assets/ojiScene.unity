@@ -1276,8 +1276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c0a740f5c5a9ab4d971d013ee67c39b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxPosition: {x: 0, y: 0, z: 0}
-  r: 5
+  goalPoint: {fileID: 713993238}
   fade:
     yes: 1
     fadeScript: {fileID: 713993244}
@@ -1361,8 +1360,8 @@ Transform:
   m_GameObject: {fileID: 713993238}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.2327952, y: 3.6469378, z: 1.0331669}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -2.63, y: 1.13, z: -1.72}
+  m_LocalScale: {x: 3, y: 2, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
