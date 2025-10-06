@@ -7,8 +7,7 @@ using UnityEngine.SceneManagement;
 public class Goal : MonoBehaviour
 {
     [Header("クリアポイント設定")]
-    public Vector3 boxPosition = new Vector3(0, 0, 0);
-    public float r = 5;
+    public GameObject goalPoint;
 
     [System.Serializable]
     public class FadeClass
@@ -22,8 +21,7 @@ public class Goal : MonoBehaviour
 
     void Start()
     {
-        this.transform.localScale = new Vector3(r, r, r);
-        this.transform.position = boxPosition;
+        
     }
 
     void Update()
