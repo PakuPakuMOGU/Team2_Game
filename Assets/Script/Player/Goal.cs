@@ -16,11 +16,6 @@ public class Goal : MonoBehaviour
         clearDisplay.SetActive(false);
     }
 
-    void Update()
-    {
-       
-    }
-
     void OnTriggerEnter(Collider collider)
     {
         if (collider.CompareTag("Player"))
