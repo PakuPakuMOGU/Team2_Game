@@ -16,6 +16,7 @@ public class GoTitle : MonoBehaviour
 
     public void FadeStart()
     {
+        Debug.Log("AAAA");
         if (ShareVariable.Share.clear)
         { 
             if (!fade.yes)

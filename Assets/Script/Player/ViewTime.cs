@@ -10,6 +10,7 @@ public class ViewTime : MonoBehaviour
     void Start()
     {
         timeText.transform.position = new Vector3(1300,450,0);
+        Cursor.lockState = CursorLockMode.None;
     }
 
     void Update()
