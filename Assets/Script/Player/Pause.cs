@@ -18,26 +18,29 @@ public class Pause : MonoBehaviour
 
     void Update()
     {
-        // Shiftキーで一時停止を切り替え
-        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+        if (!ShareVariable.Share.clear)
         {
-            isPaused = !isPaused;
-            Time.timeScale = isPaused ? 0f : 1f;
+            // Shiftキーで一時停止を切り替え
+            if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+            {
+                isPaused = !isPaused;
+                Time.timeScale = isPaused ? 0f : 1f;
 
-            if (pauseBack != null) pauseBack.gameObject.SetActive(isPaused);
-            if (pauseTxt != null) pauseTxt.gameObject.SetActive(isPaused);
+                if (pauseBack != null) pauseBack.gameObject.SetActive(isPaused);
+                if (pauseTxt != null) pauseTxt.gameObject.SetActive(isPaused);
 
-            Debug.Log("Pause状態: " + isPaused);
-        }
+                Debug.Log("Pause状態: " + isPaused);
+            }
 
-        // ポーズ中に Esc で終了
-        if (isPaused && Input.GetKeyDown(KeyCode.Escape))
-        {
+            // ポーズ中に Esc で終了
+            if (isPaused && Input.GetKeyDown(KeyCode.Escape))
+            {
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
 #else
-            Application.Quit();
+                Application.Quit();
 #endif
+            }
         }
     }
 }
