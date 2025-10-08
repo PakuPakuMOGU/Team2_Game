@@ -14,7 +14,7 @@ public class GoTitle : MonoBehaviour
     [Header("フェードアウトする？")]
     [SerializeField] private FadeClass fade;
 
-    public void FadeStart()
+    public void OnClick()
     {
         Debug.Log("AAAA");
         if (ShareVariable.Share.clear)
