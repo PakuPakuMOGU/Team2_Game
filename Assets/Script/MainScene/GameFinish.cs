@@ -12,12 +12,11 @@ public class GameFinish : MonoBehaviour
     }
     public void OnClick()
     {
-        Debug.Log("‰Ÿ‚³‚ê‚½!");/*
+        Debug.Log("‰Ÿ‚³‚ê‚½!");
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
 #else
         Application.Quit();
-#endif
-        */
+#endif       
     }
 }
