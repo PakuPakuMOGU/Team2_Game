@@ -7,12 +7,12 @@ public class GameStart : MonoBehaviour
 {
     void Start()
     {
-        Cursor.lockState = CursorLockMode.None;
+        Cursor.lockState = CursorLockMode.None;     // マウスカーソルの中央固定解除.
+        Cursor.visible = true;                      // マウスカーソル表示.
     }
     // ボタンが押されたとき.
     public void OnClick()
     {
-        Debug.Log("押された!");
         SceneManager.LoadScene("GameScene");
     }
 }
