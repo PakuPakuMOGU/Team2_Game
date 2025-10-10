@@ -37,6 +37,10 @@ public class PlayerController : MonoBehaviour
         {
             jumpRequested = true;
         }
+        if (transform.position.y < -15) 
+        {
+            ShareVariable.Share.replay = true;
+        }
     }
 
     private void FixedUpdate()
