@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/ojiScene.unity
+    path: Assets/Scenes/ojiScene.unity
     guid: b3f38dcb283880f49b43bc03240f9c99
   - enabled: 1
     path: Assets/Scenes/MainScene.unity
