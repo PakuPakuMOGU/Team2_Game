@@ -3358,6 +3358,7 @@ GameObject:
   - component: {fileID: 1624836150}
   - component: {fileID: 1624836149}
   - component: {fileID: 1624836148}
+  - component: {fileID: 1624836152}
   m_Layer: 5
   m_Name: FinishButton
   m_TagString: Untagged
@@ -3396,6 +3397,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 380c7fe2a2b41364285f92d487b24707, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fade:
+    yes: 1
+    fadeScript: {fileID: 1624836152}
 --- !u!114 &1624836149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3490,6 +3494,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1624836146}
   m_CullTransparentMesh: 1
+--- !u!114 &1624836152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1624836146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9548dc891f212f345a7a77e12a426345, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FadePanel: {fileID: 1533129729}
 --- !u!1 &1637014845
 GameObject:
   m_ObjectHideFlags: 0
