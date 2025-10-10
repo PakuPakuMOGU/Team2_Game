@@ -36,7 +36,8 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+        // 「T」キーでポーズON/OFF
+        if (Input.GetKeyDown(KeyCode.T))
         {
             isPaused = !isPaused;
             SetPauseUI(isPaused);
@@ -46,6 +47,7 @@ public class PauseMenu : MonoBehaviour
             else PlaySE(resumeSE);
         }
 
+        // ポーズ中に「Esc」で終了
         if (isPaused && Input.GetKeyDown(KeyCode.Escape))
         {
             QuitGame();
