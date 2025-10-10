@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameStart : MonoBehaviour
+public class Nice : MonoBehaviour
 {
     [System.Serializable]
     public class FadeClass
@@ -14,14 +14,7 @@ public class GameStart : MonoBehaviour
     [Header("フェードアウトする？")]
     [SerializeField] private FadeClass fade;
 
-    void Start()
-    {
-        Cursor.lockState = CursorLockMode.None;     // マウスカーソルの中央固定解除.
-        Cursor.visible = true;                      // マウスカーソル表示.
-    }
-
-    // ボタンが押されたとき.
-    public void OnClick()
+    void OnTriggerEnter(Collider collider)
     {
         if (!fade.yes)
         {
@@ -33,8 +26,9 @@ public class GameStart : MonoBehaviour
             fade.fadeScript.StartFade();
         }
     }
+
     private void ReturnGameScene()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("ojiScene");
     }
 }
