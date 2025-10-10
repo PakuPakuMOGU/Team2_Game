@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CheckPoint : MonoBehaviour
 {
+    [Header("プレイヤーオブジェクト")]
+    public GameObject Player;
     [Header("チェックポイント設定")]
     public List<GameObject> checkPoints = new List<GameObject>();
     public List<string> listTag = new List<string>();
@@ -22,6 +24,15 @@ public class CheckPoint : MonoBehaviour
         for (int i = 0; i < checkPoints.Count; i++)
         {
             checkPoints[i].tag = listTag[i];
+        }
+    }
+
+    void Update()
+    {
+        if(ShareVariable.Share.replay)
+        {
+            Player.transform.position = playerPosition;
+            ShareVariable.Share.replay = false;
         }
     }
 

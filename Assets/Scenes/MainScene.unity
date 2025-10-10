@@ -1004,7 +1004,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1729509295}
   - {fileID: 1318284944}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3607,6 +3606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d856fb4234f56864b9d96cec808c3715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 458838664}
   checkPoints:
   - {fileID: 1853769591}
   listTag:
@@ -3620,12 +3620,12 @@ Transform:
   m_GameObject: {fileID: 1729509293}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.7101835, y: 0.19931126, z: -0.3547988}
+  m_LocalPosition: {x: -0.7101835, y: -4.740689, z: 6.0252013}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1853769593}
-  m_Father: {fileID: 458838670}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1745096152 stripped
 Transform:
@@ -4626,6 +4626,7 @@ SceneRoots:
   - {fileID: 999633859}
   - {fileID: 1757559686}
   - {fileID: 1684286946}
+  - {fileID: 1729509295}
   - {fileID: 458838670}
   - {fileID: 1015361217}
   - {fileID: 898849492}
