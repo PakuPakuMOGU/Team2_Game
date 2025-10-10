@@ -497,6 +497,7 @@ GameObject:
   - component: {fileID: 261988649}
   - component: {fileID: 261988648}
   - component: {fileID: 261988650}
+  - component: {fileID: 261988651}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -604,6 +605,18 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!114 &261988651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261988647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e354236a2e688c4f9abdd1db743484b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &339402648 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5064046406931840045, guid: 7573003ec7d73c147b9ed14640735a39, type: 3}
@@ -1293,6 +1306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d856fb4234f56864b9d96cec808c3715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 0}
   checkPoints:
   - {fileID: 339402648}
   - {fileID: 1314838334}
