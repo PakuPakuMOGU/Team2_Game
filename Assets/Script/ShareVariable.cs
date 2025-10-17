@@ -8,6 +8,7 @@ public class ShareVariable : MonoBehaviour
     {
         public static bool clear = false;
         public static bool replay = false;
+        public static bool stop = false;
     }
 }
 

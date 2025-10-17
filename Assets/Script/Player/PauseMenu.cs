@@ -22,8 +22,6 @@ public class PauseMenu : MonoBehaviour
     public AudioClip resumeSE;              // 再開用SE
     public AudioClip pauseSE;               // ポーズON用SE
 
-    private bool isPaused = false;
-
     void Start()
     {
         SetPauseUI(false);
@@ -39,16 +37,16 @@ public class PauseMenu : MonoBehaviour
         // 「T」キーでポーズON/OFF
         if (Input.GetKeyDown(KeyCode.T))
         {
-            isPaused = !isPaused;
-            SetPauseUI(isPaused);
-            Time.timeScale = isPaused ? 0f : 1f;
+            ShareVariable.Share.stop = !ShareVariable.Share.stop;
+            SetPauseUI(ShareVariable.Share.stop);
+            Time.timeScale = ShareVariable.Share.stop ? 0f : 1f;
 
-            if (isPaused) PlaySE(pauseSE);
+            if (ShareVariable.Share.stop) PlaySE(pauseSE);
             else PlaySE(resumeSE);
         }
 
         // ポーズ中に「Esc」で終了
-        if (isPaused && Input.GetKeyDown(KeyCode.Escape))
+        if (ShareVariable.Share.stop && Input.GetKeyDown(KeyCode.Escape))
         {
             QuitGame();
         }
