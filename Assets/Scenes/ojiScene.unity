@@ -8875,7 +8875,6 @@ GameObject:
   - component: {fileID: 2003621531}
   - component: {fileID: 2003621530}
   - component: {fileID: 2003621535}
-  - component: {fileID: 2003621536}
   - component: {fileID: 2003621537}
   m_Layer: 0
   m_Name: Player
@@ -9016,20 +9015,6 @@ MonoBehaviour:
   Check: {fileID: 840434649}
   Gate: {fileID: 1573039114}
   cameraTransform: {fileID: 1002283903}
---- !u!114 &2003621536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2003621528}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a738204c28f64b45a11014f5b136749, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PoseBack: {fileID: 0}
-  Posetxt: {fileID: 0}
 --- !u!114 &2003621537
 MonoBehaviour:
   m_ObjectHideFlags: 0
