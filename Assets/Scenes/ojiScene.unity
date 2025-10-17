@@ -9241,6 +9241,10 @@ PrefabInstance:
       value: Canvas_Display
       objectReference: {fileID: 0}
     - target: {fileID: 4291963911111267203, guid: a3b878f0e577401499b4b8c5dd591df9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4291963911111267203, guid: a3b878f0e577401499b4b8c5dd591df9, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
