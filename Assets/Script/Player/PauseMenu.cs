@@ -26,10 +26,8 @@ public class PauseMenu : MonoBehaviour
     {
         SetPauseUI(false);
 
-        if (quitButton != null)
-            quitButton.onClick.AddListener(QuitGame);
-        if (optionButton != null)
-            optionButton.onClick.AddListener(OpenOption);
+        quitButton?.onClick.AddListener(QuitGame);
+        optionButton?.onClick.AddListener(OpenOption);
     }
 
     void Update()
@@ -54,14 +52,10 @@ public class PauseMenu : MonoBehaviour
 
     private void SetPauseUI(bool active)
     {
-        if (pauseBack != null)
-            pauseBack.gameObject.SetActive(active);
-        if (pauseTxt != null)
-            pauseTxt.gameObject.SetActive(active);
-        if (quitButton != null)
-            quitButton.gameObject.SetActive(active);
-        if (optionButton != null)
-            optionButton.gameObject.SetActive(active);
+        pauseBack?.gameObject.SetActive(active);
+        pauseTxt?.gameObject.SetActive(active);
+        quitButton?.gameObject.SetActive(active);
+        optionButton?.gameObject.SetActive(active);
 
         Cursor.lockState = active ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = active;
