@@ -18,19 +18,22 @@ public class ClearTime : MonoBehaviour
 
     void Update()
     {
-        if (timeCount >= 60 && !ShareVariable.Share.clear)
+        if (!ShareVariable.Share.stop)
         {
-            timeCount = 0;
-            time++;
+            if (timeCount >= 60 && !ShareVariable.Share.clear)
+            {
+                timeCount = 0;
+                time++;
 
-            Text score_text = score_object.GetComponent<Text>();
+                Text score_text = score_object.GetComponent<Text>();
 
-            int hours = time / 3600;
-            int minutes = (time % 3600) / 60;
-            int seconds = time % 60;
+                int hours = time / 3600;
+                int minutes = (time % 3600) / 60;
+                int seconds = time % 60;
 
-            score_text.text = $"{hours:D2}:{minutes:D2}:{seconds:D2}"; // —á: 01:23:45
+                score_text.text = $"{hours:D2}:{minutes:D2}:{seconds:D2}"; // —á: 01:23:45
+            }
+            timeCount++;
         }
-        timeCount++;
     }
 }
