@@ -34,37 +34,14 @@ public class MovePingPongEditor : Editor
         EditorGUILayout.LabelField("移動方向（該当する方向にチェック）", EditorStyles.boldLabel);
 
         // X軸
-        EditorGUILayout.BeginHorizontal();
-        EditorGUI.BeginDisabledGroup(script.moveXMinus);
-        script.moveXPlus = EditorGUILayout.ToggleLeft("X+", script.moveXPlus, GUILayout.Width(60));
-        EditorGUI.EndDisabledGroup();
-
-        EditorGUI.BeginDisabledGroup(script.moveXPlus);
-        script.moveXMinus = EditorGUILayout.ToggleLeft("X-", script.moveXMinus, GUILayout.Width(60));
-        EditorGUI.EndDisabledGroup();
-        EditorGUILayout.EndHorizontal();
+        kansu(script.moveXPlus, script.moveXMinus, "X");
 
         // Y軸
-        EditorGUILayout.BeginHorizontal();
-        EditorGUI.BeginDisabledGroup(script.moveYMinus);
-        script.moveYPlus = EditorGUILayout.ToggleLeft("Y+", script.moveYPlus, GUILayout.Width(60));
-        EditorGUI.EndDisabledGroup();
-
-        EditorGUI.BeginDisabledGroup(script.moveYPlus);
-        script.moveYMinus = EditorGUILayout.ToggleLeft("Y-", script.moveYMinus, GUILayout.Width(60));
-        EditorGUI.EndDisabledGroup();
-        EditorGUILayout.EndHorizontal();
+        kansu(script.moveYPlus, script.moveYMinus, "Y");
 
         // Z軸
-        EditorGUILayout.BeginHorizontal();
-        EditorGUI.BeginDisabledGroup(script.moveZMinus);
-        script.moveZPlus = EditorGUILayout.ToggleLeft("Z+", script.moveZPlus, GUILayout.Width(60));
-        EditorGUI.EndDisabledGroup();
-
-        EditorGUI.BeginDisabledGroup(script.moveZPlus);
-        script.moveZMinus = EditorGUILayout.ToggleLeft("Z-", script.moveZMinus, GUILayout.Width(60));
-        EditorGUI.EndDisabledGroup();
-        EditorGUILayout.EndHorizontal();
+        kansu(script.moveZPlus, script.moveZMinus, "Z");
+        
 
         EditorGUILayout.Space();
 
@@ -73,5 +50,18 @@ public class MovePingPongEditor : Editor
         {
             EditorUtility.SetDirty(script);
         }
+    }
+
+    private void kansu(bool a, bool b, string c)
+    {
+        EditorGUILayout.BeginHorizontal();
+        EditorGUI.BeginDisabledGroup(b);
+        a = EditorGUILayout.ToggleLeft(c + '+', a, GUILayout.Width(60));
+        EditorGUI.EndDisabledGroup();
+
+        EditorGUI.BeginDisabledGroup(a);
+        b = EditorGUILayout.ToggleLeft(c + '-', b, GUILayout.Width(60));
+        EditorGUI.EndDisabledGroup();
+        EditorGUILayout.EndHorizontal();
     }
 }
