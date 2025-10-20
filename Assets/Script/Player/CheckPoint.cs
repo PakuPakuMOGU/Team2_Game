@@ -11,7 +11,7 @@ public class CheckPoint : MonoBehaviour
     public List<string> listTag = new List<string>();
 
     public bool[] ListON;
-    private Vector3 playerPosition;
+    public Vector3 playerPosition;
 
     void Start()
     {

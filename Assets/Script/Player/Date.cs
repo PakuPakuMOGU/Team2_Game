@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerData
 {
     public Vector3 playerPosition;
+    public Vector3 replayPosition;
     public float time;
     public bool[] checker;
 }
@@ -39,6 +40,7 @@ public class Date: MonoBehaviour
             data.checker[i] = checkSc.ListON[i];
         }
         data.playerPosition = this.transform.position;
+        data.replayPosition = checkSc.playerPosition;
         data.time = timeSc.ReturnNowTime();
 
         string json = JsonUtility.ToJson(data, true);
@@ -64,6 +66,7 @@ public class Date: MonoBehaviour
                     checkSc.StartTagCheck(i);
                 }
             }
+            checkSc.playerPosition = data.replayPosition;
 
             Debug.Log("Load!");
         }
