@@ -1,3 +1,4 @@
+using System.Collections;
 using System.IO;
 using UnityEngine;
 
@@ -6,23 +7,46 @@ public class PlayerData
 {
     public Vector3 playerPosition;
     public float time;
+    public bool[] checker;
 }
 
 public class Date: MonoBehaviour
 {
     public ClearTime timeSc;
+    public CheckPoint checkSc;
 
+
+    private void Start()
+    {
+        StartCoroutine(LoadWithDelay());
+    }
+
+    private IEnumerator LoadWithDelay()
+    {
+        yield return new WaitForSeconds(0.1f);
+        Load();
+    }
+
+
+    // データをセーブ.
     public void Save()
     {
         PlayerData data = new PlayerData();
+        data.checker = new bool[checkSc.checkPoints.Count];
+        data.checker = new bool[checkSc.ListON.Length];
+        for (int i = 0; i < checkSc.ListON.Length; i++)
+        {
+            data.checker[i] = checkSc.ListON[i];
+        }
         data.playerPosition = this.transform.position;
         data.time = timeSc.ReturnNowTime();
 
-        string json = JsonUtility.ToJson(data, true); // 見やすい形式で
+        string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(Application.persistentDataPath + "/save.json", json);
         Debug.Log("Save!");
     }
 
+    // セーブデータをロード.
     public void Load()
     {
         string path = Application.persistentDataPath + "/save.json";
@@ -32,6 +56,14 @@ public class Date: MonoBehaviour
             PlayerData data = JsonUtility.FromJson<PlayerData>(json);
             this.transform.position= data.playerPosition;
             timeSc.GiveNowTime(data.time);
+            for (int i = 0; i < checkSc.ListON.Length; i++)
+            {
+                if (data.checker[i] == true) 
+                {
+                    checkSc.ListON[i] = true;
+                    checkSc.StartTagCheck(i);
+                }
+            }
 
             Debug.Log("Load!");
         }
@@ -41,6 +73,7 @@ public class Date: MonoBehaviour
         }
     }
 
+    // セーブデータをリセット.
     public void Reset()
     {
         string path = Application.persistentDataPath + "/save.json";
@@ -53,9 +86,6 @@ public class Date: MonoBehaviour
         {
             Debug.Log("削除対象のセーブデータが存在しません");
         }
-
-        // プレイヤーの位置を初期化（例：原点に戻す）
-        this.transform.position = Vector3.zero;
 
         // 時間を初期化
         if (timeSc != null)
