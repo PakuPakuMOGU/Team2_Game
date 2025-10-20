@@ -9,6 +9,13 @@ using UnityEditor;
 
 public class PauseMenu : MonoBehaviour
 {
+    [Header("Dateスクリプト")]
+    public Date date;
+
+    [Header("フェードスクリプト")]
+    public FadeInOut fadeScript;
+
+
     [Header("UI設定")]
     public Image pauseBack;                 // 背景パネル
     public TextMeshProUGUI pauseTxt;        // ポーズ用テキスト
@@ -69,8 +76,14 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitGame()
     {
+        date.Save();
+        fadeScript.OnFadeComplete = Exit;
+        fadeScript.StartFade();
+    }
+
+    public void Exit()
+    {
         PlaySE(quitSE);
-        Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
