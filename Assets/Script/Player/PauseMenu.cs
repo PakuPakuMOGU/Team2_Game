@@ -10,16 +10,16 @@ using UnityEditor;
 public class PauseMenu : MonoBehaviour
 {
     [Header("Dateスクリプト")]
-    public Date date;
+    public Date data;
 
     [Header("フェードスクリプト")]
     public FadeInOut fadeScript;
-
 
     [Header("UI設定")]
     public Image pauseBack;                 // 背景パネル
     public TextMeshProUGUI pauseTxt;        // ポーズ用テキスト
     public Button quitButton;               // Quit ボタン
+    public Button rePlayButton;             // やり直し ボタン
     public Button optionButton;             // Option ボタン
 
     [Header("効果音設定")]
@@ -32,6 +32,8 @@ public class PauseMenu : MonoBehaviour
     void Start()
     {
         SetPauseUI(false);
+        ShareVariable.Share.stop = false;
+        Time.timeScale = 1f;
 
         quitButton?.onClick.AddListener(QuitGame);
         optionButton?.onClick.AddListener(OpenOption);
@@ -50,11 +52,21 @@ public class PauseMenu : MonoBehaviour
             else PlaySE(resumeSE);
         }
 
+        /*
+        // ポーズ中に「Space」
+        if(ShareVariable.Share.stop && Input.GetKeyDown(KeyCode.Space))
+        {
+            data.Reset();
+            fadeScript.OnFadeComplete = ReturnGameScene;
+            fadeScript.StartFade();
+        }
+
         // ポーズ中に「Esc」で終了
         if (ShareVariable.Share.stop && Input.GetKeyDown(KeyCode.Escape))
         {
             QuitGame();
         }
+        */
     }
 
     private void SetPauseUI(bool active)
@@ -62,6 +74,7 @@ public class PauseMenu : MonoBehaviour
         pauseBack?.gameObject.SetActive(active);
         pauseTxt?.gameObject.SetActive(active);
         quitButton?.gameObject.SetActive(active);
+        rePlayButton?.gameObject.SetActive(active);
         optionButton?.gameObject.SetActive(active);
 
         Cursor.lockState = active ? CursorLockMode.None : CursorLockMode.Locked;
@@ -76,7 +89,7 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitGame()
     {
-        date.Save();
+        data.Save();
         fadeScript.OnFadeComplete = Exit;
         fadeScript.StartFade();
     }
@@ -92,6 +105,18 @@ public class PauseMenu : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+
+    public void RePlayGame()
+    {
+        data.Reset();
+        fadeScript.OnFadeComplete = ReturnGameScene;
+        fadeScript.StartFade();
+    }
+
+    private void ReturnGameScene()
+    {
+        SceneManager.LoadScene("SampleScene");
     }
 
     public void OpenOption()
