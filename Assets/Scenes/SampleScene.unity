@@ -5789,6 +5789,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeSc: {fileID: 2005473171}
+  checkSc: {fileID: 1587573862}
 --- !u!1001 &683369651
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13237,13 +13238,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d856fb4234f56864b9d96cec808c3715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
+  Player: {fileID: 672434723}
   checkPoints:
   - {fileID: 105390930}
   - {fileID: 2059304104}
   listTag:
   - Check1
   - Check2
+  ListON: 
 --- !u!4 &1587573863
 Transform:
   m_ObjectHideFlags: 0
@@ -16218,6 +16220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeSc: {fileID: 2005473171}
+  checkSc: {fileID: 0}
 --- !u!114 &1940326344
 MonoBehaviour:
   m_ObjectHideFlags: 0
