@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     public float dashSpeed = 10f;        // ダッシュ時の速度
     public float jumpForce = 5f;         // ジャンプ力
 
+    [Header("Dateスクリプト")]
+    public Date date;
+
     [Header("チェックポイントスクリプト")]
     public CheckPoint Check;
 
@@ -26,6 +29,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        if(date != null)    date.Load();
         rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeRotation;
     }

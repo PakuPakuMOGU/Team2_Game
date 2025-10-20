@@ -84,7 +84,7 @@ public class Fade : MonoBehaviour
                 color.a = currentAlpha;
                 image.color = color;
             }
-            elapsed += Time.deltaTime;
+            elapsed += Time.unscaledDeltaTime; // timeScale = 0 Ç≈Ç‡çÏìÆ.
             yield return null;
         }
 
