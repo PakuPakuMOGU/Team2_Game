@@ -1,39 +1,42 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class ClearTime : MonoBehaviour
 {
     [Header("Textオブジェクト")]
-    public GameObject score_object = null;
+    public GameObject score_object;
 
-    private int time = 0;
-    private int timeCount = 0;
+    private TextMeshProUGUI score_text;
+    private float elapsedTime = 0f;
 
     void Start()
     {
         Application.targetFrameRate = 60;
+        score_text = score_object.GetComponent<TextMeshProUGUI>();
     }
 
     void Update()
     {
-        if (!ShareVariable.Share.stop)
+        if (!ShareVariable.Share.stop && !ShareVariable.Share.clear)
         {
-            if (timeCount >= 60 && !ShareVariable.Share.clear)
-            {
-                timeCount = 0;
-                time++;
+            elapsedTime += Time.deltaTime;
 
-                Text score_text = score_object.GetComponent<Text>();
+            int totalSeconds = Mathf.FloorToInt(elapsedTime);
+            int hours = totalSeconds / 3600;
+            int minutes = (totalSeconds % 3600) / 60;
+            int seconds = totalSeconds % 60;
 
-                int hours = time / 3600;
-                int minutes = (time % 3600) / 60;
-                int seconds = time % 60;
-
-                score_text.text = $"{hours:D2}:{minutes:D2}:{seconds:D2}"; // 例: 01:23:45
-            }
-            timeCount++;
+            score_text.SetText($"{hours:D2}:{minutes:D2}:{seconds:D2}");
         }
+    }
+
+    public float ReturnNowTime()
+    {
+        return elapsedTime;
+    }
+
+    public void GiveNowTime(float time)
+    {
+        elapsedTime = time;
     }
 }
