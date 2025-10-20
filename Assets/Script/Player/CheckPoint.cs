@@ -10,10 +10,16 @@ public class CheckPoint : MonoBehaviour
     public List<GameObject> checkPoints = new List<GameObject>();
     public List<string> listTag = new List<string>();
 
+    public bool[] ListON;
     private Vector3 playerPosition;
 
     void Start()
     {
+        ListON = new bool[checkPoints.Count]; 
+        for (int i = 0; i < checkPoints.Count; i++)
+        {
+            ListON[i] = false;
+        }
         if (checkPoints.Count == 0 || checkPoints.Count != listTag.Count)
         {
             Debug.LogWarning("チェックポイントのプレハブからCheckPointを確認してください");
@@ -43,7 +49,7 @@ public class CheckPoint : MonoBehaviour
             if (tag == listTag[i])
             {
                 playerPosition = checkPoints[i].transform.position;
-
+                ListON[i] = true;
                 GameObject obj = GameObject.FindWithTag(tag);
                 if (obj == null)
                 {
@@ -63,6 +69,11 @@ public class CheckPoint : MonoBehaviour
                 return;
             }
         }
+    }
+
+    public void StartTagCheck(int num)
+    {
+        TagCheck(listTag[num]);
     }
 
     public Vector3 ReturnCheckPoint()
