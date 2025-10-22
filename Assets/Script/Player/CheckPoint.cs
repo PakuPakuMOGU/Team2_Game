@@ -42,7 +42,7 @@ public class CheckPoint : MonoBehaviour
         }
     }
 
-    public void TagCheck(string tag)
+    public void TagCheck(string tag, bool needSound)
     {
         for (int i = 0; i < listTag.Count; i++)
         {
@@ -59,7 +59,7 @@ public class CheckPoint : MonoBehaviour
 
                 if (obj.TryGetComponent<Runestone_Controller>(out var rune))
                 {
-                    rune.ToggleRuneStone(true);
+                    rune.ToggleRuneStone(true, needSound);
                 }
                 else
                 {
@@ -73,7 +73,7 @@ public class CheckPoint : MonoBehaviour
 
     public void StartTagCheck(int num)
     {
-        TagCheck(listTag[num]);
+        TagCheck(listTag[num], false);
     }
 
     public Vector3 ReturnCheckPoint()

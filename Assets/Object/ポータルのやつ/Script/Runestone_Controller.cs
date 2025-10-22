@@ -39,7 +39,7 @@ public class Runestone_Controller : MonoBehaviour
     }
 
     //Call this function to activate or deactivate the effects
-    public void ToggleRuneStone(bool _activate)
+    public void ToggleRuneStone(bool _activate, bool needSound)
     {
         if (inTransition || activated == _activate)
             return;
@@ -47,7 +47,7 @@ public class Runestone_Controller : MonoBehaviour
         if (_activate)//toggle on
         {
             activated = true;
-            sound.Play();
+            if (needSound) sound.Play();
             transitionCor = StartCoroutine(TransitionSequence());
 
             for (int i = 0; i < 2; i++)

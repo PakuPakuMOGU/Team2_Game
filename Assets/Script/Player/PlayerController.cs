@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
     void OnTriggerEnter(Collider collider)
     {
         string tag = collider.gameObject.tag;
-        Check.TagCheck(tag);
+        Check.TagCheck(tag, true);
         Gate.TagCheck(tag);
     }
 
