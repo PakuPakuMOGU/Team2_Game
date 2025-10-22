@@ -511,7 +511,7 @@ GameObject:
   - component: {fileID: 3603579402070865289}
   - component: {fileID: 5296152654012053572}
   m_Layer: 5
-  m_Name: Canvas_Display
+  m_Name: Canvas_DisPlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1062,4 +1062,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc9af79d45168be40a078b3bfdf4d140, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeText: {fileID: 22961807653040766}
+  timeText: {fileID: 5519868774516250039}
