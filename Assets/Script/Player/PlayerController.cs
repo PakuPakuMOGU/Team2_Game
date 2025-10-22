@@ -29,7 +29,6 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        if(date != null)    date.Load();
         rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeRotation;
     }
