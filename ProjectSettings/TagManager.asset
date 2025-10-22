@@ -9,6 +9,7 @@ TagManager:
   - Check1
   - Check2
   - Check3
+  - Chack3
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - Text
   - Water
   - UI
-  - 
+  - Fade
   - 
   - 
   - 
