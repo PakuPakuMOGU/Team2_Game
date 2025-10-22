@@ -17,7 +17,7 @@ public class PauseMenu : MonoBehaviour
 
     [Header("UI設定")]
     public Image pauseBack;                 // 背景パネル
-    public TextMeshProUGUI pauseTxt;        // ポーズ用テキスト
+    public Image Menu;                      // Menuの文字
     public Button quitButton;               // Quit ボタン
     public Button rePlayButton;             // やり直し ボタン
     public Button closeButton;              // ゲームに戻る ボタン
@@ -51,7 +51,7 @@ public class PauseMenu : MonoBehaviour
     private void SetPauseUI(bool active)
     {
         pauseBack?.gameObject.SetActive(active);
-        pauseTxt?.gameObject.SetActive(active);
+        Menu?.gameObject.SetActive(active);
         quitButton?.gameObject.SetActive(active);
         rePlayButton?.gameObject.SetActive(active);
         closeButton?.gameObject.SetActive(active);
