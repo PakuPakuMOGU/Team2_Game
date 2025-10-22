@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
-using UnityEngine.Audio;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -10,56 +9,34 @@ using UnityEditor;
 
 public class PauseMenu : MonoBehaviour
 {
+    [Header("Dateスクリプト")]
+    public Date data;
+
+    [Header("フェードスクリプト")]
+    public FadeInOut fadeScript;
+
     [Header("UI設定")]
     public Image pauseBack;                 // 背景パネル
     public TextMeshProUGUI pauseTxt;        // ポーズ用テキスト
     public Button quitButton;               // Quit ボタン
+    public Button rePlayButton;             // やり直し ボタン
     public Button optionButton;             // Option ボタン
 
-    [Header("オプションUI")]
-    public GameObject optionPanel;          // オプション画面用パネル
-    public Slider bgmSlider;                // BGM音量スライダー
-    public Slider seSlider;                 // 効果音スライダー
-    public Button optionBackButton;         // オプション→戻るボタン
-
-    [Header("Audio設定")]
-    public AudioMixer audioMixer;           // AudioMixerを指定
-    public AudioSource audioSource;         // 効果音再生用AudioSource
-    public AudioClip quitSE;
-    public AudioClip optionSE;
-    public AudioClip resumeSE;
-    public AudioClip pauseSE;
-
-    private bool isPaused = false;
+    [Header("効果音設定")]
+    public AudioSource audioSource;         // 効果音再生用
+    public AudioClip quitSE;                // Quit ボタン用SE
+    public AudioClip optionSE;              // Option ボタン用SE
+    public AudioClip resumeSE;              // 再開用SE
+    public AudioClip pauseSE;               // ポーズON用SE
 
     void Start()
     {
-        // ポーズUIを非表示
         SetPauseUI(false);
-        // オプションパネル非表示
-        if (optionPanel != null)
-            optionPanel.SetActive(false);
+        ShareVariable.Share.stop = false;
+        Time.timeScale = 1f;
 
-        // ボタン登録
-        if (quitButton != null)
-            quitButton.onClick.AddListener(QuitGame);
-        if (optionButton != null)
-            optionButton.onClick.AddListener(OpenOption);
-        if (optionBackButton != null)
-            optionBackButton.onClick.AddListener(CloseOption);
-
-        // スライダー初期化
-        float bgmVolume = PlayerPrefs.GetFloat("BGMVolume", 0.75f);
-        float seVolume = PlayerPrefs.GetFloat("SEVolume", 0.75f);
-
-        bgmSlider.value = bgmVolume;
-        seSlider.value = seVolume;
-
-        SetBGMVolume(bgmVolume);
-        SetSEVolume(seVolume);
-
-        bgmSlider.onValueChanged.AddListener(SetBGMVolume);
-        seSlider.onValueChanged.AddListener(SetSEVolume);
+        quitButton?.onClick.AddListener(QuitGame);
+        optionButton?.onClick.AddListener(OpenOption);
     }
 
     void Update()
@@ -67,33 +44,38 @@ public class PauseMenu : MonoBehaviour
         // 「T」キーでポーズON/OFF
         if (Input.GetKeyDown(KeyCode.T))
         {
-            if (optionPanel != null && optionPanel.activeSelf) return; // オプション中はポーズ切替不可
+            ShareVariable.Share.stop = !ShareVariable.Share.stop;
+            SetPauseUI(ShareVariable.Share.stop);
+            Time.timeScale = ShareVariable.Share.stop ? 0f : 1f;
 
-            isPaused = !isPaused;
-            SetPauseUI(isPaused);
-            Time.timeScale = isPaused ? 0f : 1f;
-
-            if (isPaused) PlaySE(pauseSE);
+            if (ShareVariable.Share.stop) PlaySE(pauseSE);
             else PlaySE(resumeSE);
         }
 
+        /*
+        // ポーズ中に「Space」
+        if(ShareVariable.Share.stop && Input.GetKeyDown(KeyCode.Space))
+        {
+            data.Reset();
+            fadeScript.OnFadeComplete = ReturnGameScene;
+            fadeScript.StartFade();
+        }
+
         // ポーズ中に「Esc」で終了
-        if (isPaused && Input.GetKeyDown(KeyCode.Escape))
+        if (ShareVariable.Share.stop && Input.GetKeyDown(KeyCode.Escape))
         {
             QuitGame();
         }
+        */
     }
 
     private void SetPauseUI(bool active)
     {
-        if (pauseBack != null)
-            pauseBack.gameObject.SetActive(active);
-        if (pauseTxt != null)
-            pauseTxt.gameObject.SetActive(active);
-        if (quitButton != null)
-            quitButton.gameObject.SetActive(active);
-        if (optionButton != null)
-            optionButton.gameObject.SetActive(active);
+        pauseBack?.gameObject.SetActive(active);
+        pauseTxt?.gameObject.SetActive(active);
+        quitButton?.gameObject.SetActive(active);
+        rePlayButton?.gameObject.SetActive(active);
+        optionButton?.gameObject.SetActive(active);
 
         Cursor.lockState = active ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = active;
@@ -107,8 +89,14 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitGame()
     {
+        data.Save();
+        fadeScript.OnFadeComplete = Exit;
+        fadeScript.StartFade();
+    }
+
+    public void Exit()
+    {
         PlaySE(quitSE);
-        Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
@@ -119,36 +107,24 @@ public class PauseMenu : MonoBehaviour
 #endif
     }
 
+    public void RePlayGame()
+    {
+        data.Reset();
+        fadeScript.OnFadeComplete = ReturnGameScene;
+        fadeScript.StartFade();
+    }
+
+    private void ReturnGameScene()
+    {
+        SceneManager.LoadScene("SampleScene");
+    }
+
     public void OpenOption()
     {
         PlaySE(optionSE);
-        if (optionPanel != null)
-            optionPanel.SetActive(true);
+        Debug.Log("オプション画面を開く処理をここに追加してください。");
 
-        // ポーズUIを隠す
-        SetPauseUI(false);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-    }
-
-    public void CloseOption()
-    {
-        if (optionPanel != null)
-            optionPanel.SetActive(false);
-        SetPauseUI(true);
-        PlaySE(resumeSE);
-    }
-
-    // --- 音量調整関連 ---
-    public void SetBGMVolume(float value)
-    {
-        audioMixer.SetFloat("BGMVolume", Mathf.Log10(value) * 20);
-        PlayerPrefs.SetFloat("BGMVolume", value);
-    }
-
-    public void SetSEVolume(float value)
-    {
-        audioMixer.SetFloat("SEVolume", Mathf.Log10(value) * 20);
-        PlayerPrefs.SetFloat("SEVolume", value);
     }
 }

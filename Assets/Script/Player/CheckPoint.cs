@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class CheckPoint : MonoBehaviour
 {
+    [Header("プレイヤーオブジェクト")]
+    public GameObject Player;
     [Header("チェックポイント設定")]
     public List<GameObject> checkPoints = new List<GameObject>();
     public List<string> listTag = new List<string>();
 
-    private Vector3 playerPosition;
+    public bool[] ListON;
+    public Vector3 playerPosition;
 
     void Start()
     {
+        ListON = new bool[checkPoints.Count]; 
+        for (int i = 0; i < checkPoints.Count; i++)
+        {
+            ListON[i] = false;
+        }
         if (checkPoints.Count == 0 || checkPoints.Count != listTag.Count)
         {
             Debug.LogWarning("チェックポイントのプレハブからCheckPointを確認してください");
@@ -25,6 +33,15 @@ public class CheckPoint : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        if(ShareVariable.Share.replay)
+        {
+            Player.transform.position = playerPosition;
+            ShareVariable.Share.replay = false;
+        }
+    }
+
     public void TagCheck(string tag)
     {
         for (int i = 0; i < listTag.Count; i++)
@@ -32,7 +49,7 @@ public class CheckPoint : MonoBehaviour
             if (tag == listTag[i])
             {
                 playerPosition = checkPoints[i].transform.position;
-
+                ListON[i] = true;
                 GameObject obj = GameObject.FindWithTag(tag);
                 if (obj == null)
                 {
@@ -52,6 +69,11 @@ public class CheckPoint : MonoBehaviour
                 return;
             }
         }
+    }
+
+    public void StartTagCheck(int num)
+    {
+        TagCheck(listTag[num]);
     }
 
     public Vector3 ReturnCheckPoint()

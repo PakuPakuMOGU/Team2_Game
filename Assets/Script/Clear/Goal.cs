@@ -11,6 +11,9 @@ public class Goal : MonoBehaviour
     [Header("クリアディスプレイ表示")]
     public GameObject clearDisplay;
 
+    [Header("クリアサウンド")]
+    public AudioSource sound;
+
     void Start()
     {
         clearDisplay.SetActive(false);
@@ -20,7 +23,7 @@ public class Goal : MonoBehaviour
     {
         if (collider.CompareTag("Player"))
         {
-            Debug.Log("Clear!!!");
+            if (!ShareVariable.Share.clear) sound.Play();
             clearDisplay.SetActive(true);
             ShareVariable.Share.clear = true;   // 全体共有の変数を変更.
         }

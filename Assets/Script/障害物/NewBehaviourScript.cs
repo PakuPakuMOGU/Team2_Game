@@ -5,9 +5,7 @@ using UnityEngine;
 public class MovingPlatform : MonoBehaviour
 {
     [Header("移動設定")]
-    public bool moveX = true;
-    public bool moveY = false;
-    public bool moveZ = false;
+    public bool[] moveXYZ = { true, false, false };
     public float distance = 3f;       // 片道の距離
     public float speed = 1f;          // 動く速さ
     public bool smooth = false;       // なめらかにする（PingPongにLerpを組み合わせる）
@@ -28,17 +26,23 @@ public class MovingPlatform : MonoBehaviour
     {
         startPos = transform.position;
         lastPos = startPos;
-        moveDir = new Vector3(moveX ? 1f : 0f, moveY ? 1f : 0f, moveZ ? 1f : 0f).normalized;
-        // 警告: moveDirがゼロだと動かないので注意
+
+        moveDir = new Vector3(moveXYZ[0] ? 1f : 0f, moveXYZ[1] ? 1f : 0f, moveXYZ[2] ? 1f : 0f);
+
         if (moveDir == Vector3.zero)
         {
-            Debug.LogWarning("MovingPlatform: move direction is zero. Enable at least one axis (X/Y/Z).");
+            Debug.LogWarning("MovingPlatform: 移動方向がゼロです");
             moveDir = Vector3.up;
         }
+        else
+        {
+            moveDir.Normalize();
+        }
 
-        // Colliderはトリガーではなく衝突用にするのが基本（必要に応じてTrigger版も作れます）
-        Collider col = GetComponent<Collider>();
-        if (col.isTrigger) Debug.LogWarning("MovingPlatform: Collider is trigger. OnCollision won't be called. If using Trigger, adapt the script.");
+        if (TryGetComponent(out Collider col) && col.isTrigger)
+        {
+            Debug.LogWarning("MovingPlatform: Collider が Trigger になっています");
+        }
     }
 
     void FixedUpdate()
@@ -122,12 +126,5 @@ public class MovingPlatform : MonoBehaviour
                 t.SetParent(null, true);
             }
         }
-    }
-
-    // （必要ならTrigger版も）
-    void OnTriggerEnter(Collider other)
-    {
-        // Trigger を使う場合の処理（同様に上面判定を追加した方が良い）
-        // 実装は上のOnCollisionEnterと同様にできます。
     }
 }
