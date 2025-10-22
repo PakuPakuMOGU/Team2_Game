@@ -52,6 +52,6 @@ public class ClearButton : MonoBehaviour
 
     private void ReturnGameScene()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("GameScene");
     }
 }
