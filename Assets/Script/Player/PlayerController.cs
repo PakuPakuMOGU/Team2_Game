@@ -75,8 +75,8 @@ public class PlayerController : MonoBehaviour
         // カメラ基準で移動ベクトルを変換
         Vector3 move = camForward * input.z + camRight * input.x;
 
-        // ダッシュキー（左Ctrl）を押しているか判定
-        isDashing = Input.GetKey(KeyCode.LeftControl);
+        // ダッシュキー（左Shift）を押しているか判定 ←★変更箇所★
+        isDashing = Input.GetKey(KeyCode.LeftShift);
         float currentSpeed = isDashing ? dashSpeed : walkSpeed;
 
         // 水平方向の速度を更新（Y方向の速度は維持）
