@@ -22,6 +22,10 @@ public class PlayerController : MonoBehaviour
     [Header("カメラのTransform")]
     public Transform cameraTransform;
 
+    [Header("操作表示")]
+    public GameObject WASD;
+    public GameObject Shift;
+
     private bool jumpRequested = false;
     private bool isGrounded = false;
     private int jumpCount = 0;           // ジャンプ回数管理
@@ -78,6 +82,11 @@ public class PlayerController : MonoBehaviour
         // ダッシュキー（左Shift）を押しているか判定 ←★変更箇所★
         isDashing = Input.GetKey(KeyCode.LeftShift);
         float currentSpeed = isDashing ? dashSpeed : walkSpeed;
+
+        // 移動キー（WASD）を押しているか判定.
+        bool isMoving = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) ||Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D);
+        Shift.SetActive(isMoving ? true : false);
+        WASD.SetActive(!isMoving ? true : false);
 
         // 水平方向の速度を更新（Y方向の速度は維持）
         Vector3 velocity = rb.velocity;
