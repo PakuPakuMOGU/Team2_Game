@@ -6912,6 +6912,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF_RuneStone
       objectReference: {fileID: 0}
+    - target: {fileID: 5064046406931840045, guid: 7573003ec7d73c147b9ed14640735a39, type: 3}
+      propertyPath: m_TagString
+      value: Check1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -22902,6 +22906,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF_RuneStone (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5064046406931840045, guid: 7573003ec7d73c147b9ed14640735a39, type: 3}
+      propertyPath: m_TagString
+      value: Check3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -22910,6 +22918,11 @@ PrefabInstance:
 --- !u!4 &1309423642 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 961382260589078851, guid: 7573003ec7d73c147b9ed14640735a39, type: 3}
+  m_PrefabInstance: {fileID: 1309423641}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1309423643 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5064046406931840045, guid: 7573003ec7d73c147b9ed14640735a39, type: 3}
   m_PrefabInstance: {fileID: 1309423641}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1311308616 stripped
@@ -27249,9 +27262,11 @@ MonoBehaviour:
   checkPoints:
   - {fileID: 105390930}
   - {fileID: 2059304104}
+  - {fileID: 1309423643}
   listTag:
   - Check1
   - Check2
+  - Check3
   ListON: 
   playerPosition: {x: 0, y: 0, z: 0}
 --- !u!4 &1587573863
@@ -31104,6 +31119,10 @@ PrefabInstance:
     - target: {fileID: 5064046406931840045, guid: 7573003ec7d73c147b9ed14640735a39, type: 3}
       propertyPath: m_Name
       value: PF_RuneStone (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5064046406931840045, guid: 7573003ec7d73c147b9ed14640735a39, type: 3}
+      propertyPath: m_TagString
+      value: Check2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
