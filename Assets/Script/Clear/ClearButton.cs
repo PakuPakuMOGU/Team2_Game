@@ -14,12 +14,14 @@ public class ClearButton : MonoBehaviour
     [Header("フェードアウトする？")]
     [SerializeField] private FadeClass fade;
 
+    public Date date;
     public AudioSource ReturnMainSound;
     public AudioSource ReturnGameSound;
 
     public void OnClick_Gotitle()
     {
         ReturnMainSound?.Play();
+        date?.Reset();
         if (!fade.yes)
         {
             ReturnMainScene();         // フェードしない場合すぐに移行.
@@ -34,6 +36,7 @@ public class ClearButton : MonoBehaviour
     public void OnClick_OneMore()
     {
         ReturnGameSound?.Play();
+        date?.Reset();
         if (!fade.yes)
         {
             ReturnGameScene();         // フェードしない場合すぐに移行.

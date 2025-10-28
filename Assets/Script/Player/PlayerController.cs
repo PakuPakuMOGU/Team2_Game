@@ -27,10 +27,18 @@ public class PlayerController : MonoBehaviour
     private int jumpCount = 0;           // ジャンプ回数管理
     private bool isDashing = false;      // ダッシュ中かどうか
 
+    [Header("落下調整")]
+    public float extraGravity = 20f;     // 追加重力（落下補強用）
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeRotation;
+        rb.drag = 0f;
+        rb.angularDrag = 0.05f;
+
+        // 重力を少し強くして、ふわふわ感を防止
+        Physics.gravity = new Vector3(0, -20f, 0);
     }
 
     private void Update()
@@ -40,7 +48,9 @@ public class PlayerController : MonoBehaviour
         {
             jumpRequested = true;
         }
-        if (transform.position.y < -15) 
+
+        // 落下死チェック
+        if (transform.position.y < -15)
         {
             ShareVariable.Share.replay = true;
         }
@@ -69,25 +79,30 @@ public class PlayerController : MonoBehaviour
         isDashing = Input.GetKey(KeyCode.LeftControl);
         float currentSpeed = isDashing ? dashSpeed : walkSpeed;
 
-
-        // 水平方向の移動速度を設定（Yは現在の速度を維持）
-        Vector3 velocity = move * currentSpeed;
-        velocity.y = rb.velocity.y;
-
+        // 水平方向の速度を更新（Y方向の速度は維持）
+        Vector3 velocity = rb.velocity;
+        velocity.x = move.x * currentSpeed;
+        velocity.z = move.z * currentSpeed;
         rb.velocity = velocity;
 
-        // ジャンプ処理
+        // ジャンプ処理（Impulseを使用して自然な挙動に）
         if (jumpRequested)
         {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             jumpCount++; // ジャンプ回数加算
             isGrounded = false;
             jumpRequested = false;
         }
+
+        // 落下補正：下向きに追加の重力を加える（ふわふわ防止）
+        if (!isGrounded && rb.velocity.y < 0)
+        {
+            rb.AddForce(Vector3.down * extraGravity, ForceMode.Acceleration);
+        }
     }
 
     // チェックポイントのタグ処理
-    void OnTriggerEnter(Collider collider)
+    private void OnTriggerEnter(Collider collider)
     {
         string tag = collider.gameObject.tag;
         Check.TagCheck(tag, true);

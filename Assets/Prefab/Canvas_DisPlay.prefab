@@ -387,6 +387,7 @@ MonoBehaviour:
   fade:
     yes: 1
     fadeScript: {fileID: 3910215384191302269}
+  date: {fileID: 0}
   ReturnMainSound: {fileID: 0}
   ReturnGameSound: {fileID: 3622208178370951192}
 --- !u!114 &3910215384191302269
@@ -714,6 +715,7 @@ MonoBehaviour:
   fade:
     yes: 1
     fadeScript: {fileID: 5452063169477125769}
+  date: {fileID: 0}
   ReturnMainSound: {fileID: 8685046231880732348}
   ReturnGameSound: {fileID: 0}
 --- !u!114 &5452063169477125769
