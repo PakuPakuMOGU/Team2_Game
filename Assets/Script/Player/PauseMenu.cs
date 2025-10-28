@@ -16,10 +16,8 @@ public class PauseMenu : MonoBehaviour
     public FadeInOut fadeScript;
 
     [Header("UI設定")]
-    public Image pauseBack;                 // 背景パネル
-    public Image Menu;                      // Menuの文字
+    public GameObject Menu;
     public Button quitButton;               // Quit ボタン
-    public Button rePlayButton;             // やり直し ボタン
     public Button closeButton;              // ゲームに戻る ボタン
 
     [Header("効果音設定")]
@@ -42,19 +40,12 @@ public class PauseMenu : MonoBehaviour
     void Update()
     {
         // 「T」キーでポーズON/OFF
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            Close();
-        }
+        if (Input.GetKeyDown(KeyCode.T)) Close();
     }
 
     private void SetPauseUI(bool active)
     {
-        pauseBack?.gameObject.SetActive(active);
         Menu?.gameObject.SetActive(active);
-        quitButton?.gameObject.SetActive(active);
-        rePlayButton?.gameObject.SetActive(active);
-        closeButton?.gameObject.SetActive(active);
 
         Cursor.lockState = active ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = active;
@@ -104,13 +95,13 @@ public class PauseMenu : MonoBehaviour
         SetPauseUI(ShareVariable.Share.stop);
         Time.timeScale = ShareVariable.Share.stop ? 0f : 1f;
 
-        if (ShareVariable.Share.stop) PlaySE(pauseSE);
-        else PlaySE(resumeSE);
+        if (ShareVariable.Share.stop)   PlaySE(pauseSE);
+        else                            PlaySE(resumeSE);
     }
 
     public void OpenOption()
     {
-        Debug.Log("オプション画面を開く処理をここに追加してください。");
+        //オプション画面を開く処理があれば追加.
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
