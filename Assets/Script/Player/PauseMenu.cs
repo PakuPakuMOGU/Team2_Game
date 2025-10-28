@@ -15,26 +15,17 @@ public class PauseMenu : MonoBehaviour
     [Header("フェードスクリプト")]
     public FadeInOut fadeScript;
 
-    [Header("UI設定")]
+    [Header("Menu画面")]
     public GameObject Menu;
-    public Button quitButton;               // Quit ボタン
-    public Button closeButton;              // ゲームに戻る ボタン
 
     [Header("効果音設定")]
-    public AudioSource audioSource;         // 効果音再生用
-    public AudioClip quitSE;                // Quit ボタン用SE
-    public AudioClip resumeSE;              // 再開用SE
-    public AudioClip pauseSE;               // ポーズON用SE
-    public AudioClip closeSE;               // ゲームに戻る ボタン用SE
+    public AudioSource SE;  
 
     void Start()
     {
         SetPauseUI(false);
         ShareVariable.Share.stop = false;
         Time.timeScale = 1f;
-
-        quitButton?.onClick.AddListener(QuitGame);
-        closeButton?.onClick.AddListener(OpenOption);
     }
 
     void Update()
@@ -51,12 +42,6 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = active;
     }
 
-    private void PlaySE(AudioClip clip)
-    {
-        if (audioSource != null && clip != null)
-            audioSource.PlayOneShot(clip);
-    }
-
     public void QuitGame()
     {
         data.Save();
@@ -66,7 +51,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Exit()
     {
-        PlaySE(quitSE);
+        SE.Play();
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
@@ -95,8 +80,7 @@ public class PauseMenu : MonoBehaviour
         SetPauseUI(ShareVariable.Share.stop);
         Time.timeScale = ShareVariable.Share.stop ? 0f : 1f;
 
-        if (ShareVariable.Share.stop)   PlaySE(pauseSE);
-        else                            PlaySE(resumeSE);
+        SE.Play();
     }
 
     public void OpenOption()

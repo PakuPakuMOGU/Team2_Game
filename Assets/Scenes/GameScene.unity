@@ -13496,7 +13496,7 @@ GameObject:
   - component: {fileID: 829868359}
   - component: {fileID: 829868358}
   - component: {fileID: 829868364}
-  - component: {fileID: 829868363}
+  - component: {fileID: 829868365}
   m_Layer: 5
   m_Name: UserInterface
   m_TagString: Untagged
@@ -13519,13 +13519,7 @@ MonoBehaviour:
   data: {fileID: 672434734}
   fadeScript: {fileID: 829868364}
   Menu: {fileID: 1065644840}
-  quitButton: {fileID: 10455040}
-  closeButton: {fileID: 1601690246}
-  audioSource: {fileID: 0}
-  quitSE: {fileID: 0}
-  resumeSE: {fileID: 0}
-  pauseSE: {fileID: 0}
-  closeSE: {fileID: 0}
+  SE: {fileID: 829868365}
 --- !u!114 &829868359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13615,7 +13609,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!82 &829868363
+--- !u!114 &829868364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 829868357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9548dc891f212f345a7a77e12a426345, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FadePanel: {fileID: 1101054243}
+--- !u!82 &829868365
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13625,7 +13632,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f23421322442ef3498c247630b471dcf, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3a39eaff5de099d40a949f59022d7604, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -13711,19 +13718,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &829868364
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 829868357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9548dc891f212f345a7a77e12a426345, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FadePanel: {fileID: 1101054243}
 --- !u!1 &832625487 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a6504feda3e7e4a4ba700d3e9db8cf26, type: 3}
