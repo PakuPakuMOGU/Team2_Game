@@ -9023,6 +9023,7 @@ MonoBehaviour:
   Check: {fileID: 840434649}
   Gate: {fileID: 1573039114}
   cameraTransform: {fileID: 1002283903}
+  extraGravity: 20
 --- !u!114 &2003621537
 MonoBehaviour:
   m_ObjectHideFlags: 0
