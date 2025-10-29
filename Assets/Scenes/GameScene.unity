@@ -16249,8 +16249,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 672434732}
-  distance: 10
-  height: 3
+  distance: 18
+  height: 4
   mouseSensitivity: 3
   minYAngle: -20
   maxYAngle: 80
