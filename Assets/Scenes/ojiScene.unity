@@ -9374,6 +9374,7 @@ GameObject:
   - component: {fileID: 2099495491}
   - component: {fileID: 2099495490}
   - component: {fileID: 2099495489}
+  - component: {fileID: 2099495495}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -9533,6 +9534,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!145 &2099495495
+SpringJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099495488}
+  m_ConnectedBody: {fileID: 777896315}
+  m_ConnectedArticulationBody: {fileID: 0}
+  m_Anchor: {x: 0, y: 0.5, z: 0}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Spring: 200
+  m_Damper: 0.2
+  m_MinDistance: 10
+  m_MaxDistance: 200
+  m_Tolerance: 0.025
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1001 &2111446260
 PrefabInstance:
   m_ObjectHideFlags: 0
