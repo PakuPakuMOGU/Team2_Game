@@ -85,8 +85,8 @@ public class PlayerController : MonoBehaviour
 
         // 移動キー（WASD）を押しているか判定.
         bool isMoving = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) ||Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D);
-        Shift.SetActive(isMoving ? true : false);
-        WASD.SetActive(!isMoving ? true : false);
+        if (Shift != null) Shift.SetActive(isMoving ? true : false);
+        if (WASD  != null) WASD.SetActive(!isMoving ? true : false);
 
         // 水平方向の速度を更新（Y方向の速度は維持）
         Vector3 velocity = rb.velocity;
