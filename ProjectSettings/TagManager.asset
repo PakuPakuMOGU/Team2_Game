@@ -9,6 +9,7 @@ TagManager:
   - Check1
   - Check2
   - Check3
+  - Check4
   layers:
   - Default
   - TransparentFX
