@@ -23,7 +23,7 @@ public class Goal : MonoBehaviour
     {
         if (collider.CompareTag("Player"))
         {
-            if (!ShareVariable.Share.clear) sound.Play();
+            if (!ShareVariable.Share.clear && sound != null)  sound.Play();
             clearDisplay.SetActive(true);
             ShareVariable.Share.clear = true;   // 全体共有の変数を変更.
         }
