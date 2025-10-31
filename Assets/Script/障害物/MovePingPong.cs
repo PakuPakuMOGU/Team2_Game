@@ -44,11 +44,11 @@ public class MovePingPong : MonoBehaviour
 
         // à⁄ìÆï˚å¸Çê›íË
         moveDirection = Vector3.zero;
-        if (moveXPlus) moveDirection.x = 1;
+        if      (moveXPlus)  moveDirection.x =  1;
         else if (moveXMinus) moveDirection.x = -1;
-        if (moveYPlus) moveDirection.y = 1;
+        if      (moveYPlus)  moveDirection.y =  1;
         else if (moveYMinus) moveDirection.y = -1;
-        if (moveZPlus) moveDirection.z = 1;
+        if      (moveZPlus)  moveDirection.z =  1;
         else if (moveZMinus) moveDirection.z = -1;
 
         moveDirection.Normalize();
